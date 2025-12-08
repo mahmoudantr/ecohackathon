@@ -103,6 +103,7 @@ body {
     margin: 5px 0;
     background-color: white;
 }
+
 /*  Hero Section  */
 .hero {
     position: relative;
@@ -349,6 +350,18 @@ body {
 
 .sponsors-grid img:hover {
     opacity: 1;
+}
+
+/* Small Sponsors */
+.small-sponsor {
+    max-width: 140px;
+    height: auto;
+}
+
+@media (max-width: 600px) {
+    .small-sponsor {
+        max-width: 90px;
+    }
 }
 
 /*  Footer  */
