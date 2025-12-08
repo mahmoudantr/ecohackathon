@@ -429,94 +429,47 @@ body {
         grid-template-columns: 1fr;
     }
 }
-/* ===========================
-        AGENDA SECTION
-=========================== */
-
+/* Agenda Section */
 .agenda-section {
     padding: 80px 0;
+    background: #f7faf9;
+    border-radius: 16px;
 }
 
-.agenda-title {
-    font-size: 3rem;
-    text-align: center;
-    margin-bottom: 2rem;
-}
-
-.agenda-tabs {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-bottom: 2.5rem;
-}
-
-.agenda-tab {
-    padding: 10px 25px;
-    border-radius: 10px;
-    background: #333;
-    border: 1px solid var(--border-color);
-    cursor: pointer;
-    font-weight: 600;
-    color: var(--text-light);
-    transition: background 0.3s, color 0.3s;
-}
-
-.agenda-tab.active {
-    background: var(--primary-green);
-    color: black;
-}
-
-.agenda-content {
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-.agenda-item {
+.agenda-grid {
     display: grid;
-    grid-template-columns: 200px 1fr;
-    gap: 2rem;
-    padding: 1.5rem 0;
-    border-bottom: 1px solid var(--border-color);
-}
-
-.agenda-time {
-    color: var(--primary-green);
-    font-weight: 600;
-    font-size: 1.1rem;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
 }
 
 .agenda-card {
-    background: var(--card-bg);
-    padding: 1.5rem;
-    border-radius: 12px;
-    border: 1px solid var(--border-color);
-    transition: border-color 0.3s, transform 0.3s;
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    border: 1px solid #eaeaea;
 }
 
-.agenda-card:hover {
-    border-color: var(--primary-green);
-    transform: translateY(-3px);
+.agenda-card h3 {
+    margin-bottom: 20px;
+    color: #3d8568;
+    font-weight: 700;
 }
 
-.agenda-card h4 {
-    font-size: 1.3rem;
-    margin-bottom: 0.5rem;
+.agenda-item {
+    margin-bottom: 15px;
+    padding-left: 12px;
+    border-left: 3px solid #3d8568;
+}
+
+.agenda-time {
     font-weight: 600;
+    display: block;
+    color: #222;
 }
 
-.agenda-card p {
-    color: var(--text-dark);
+.agenda-text {
+    margin: 5px 0 0;
+    color: #555;
 }
-
-/* Responsive */
-@media (max-width: 768px) {
-    .agenda-item {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-
-    .agenda-time {
-        font-size: 1rem;
-    }
-}
-
