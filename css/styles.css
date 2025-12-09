@@ -473,3 +473,7 @@ body {
     margin: 5px 0 0;
     color: #555;
 }
+
+#agenda {
+    display: none;
+}
