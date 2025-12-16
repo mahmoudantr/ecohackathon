@@ -1,13 +1,10 @@
-/* =========================
-   GLOBAL THEME (AGENDA STYLE)
-========================= */
 :root {
-    --bg-color: #0B1F1A;
-    --primary-green: #2ECC71;
-    --text-light: #EAFAF1;
-    --text-dark: #A8D5C2;
-    --card-bg: #112D27;
-    --border-color: rgba(255,255,255,0.08);
+    --bg-color: #171717;
+    --primary-green: #3d8568;
+    --text-light: #e0e0e0;
+    --text-dark: #a0a0a0;
+    --card-bg: #4a4a4a;
+    --border-color: #2a2a2a;
 }
 
 * {
@@ -18,27 +15,26 @@
 
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background: var(--bg-color);
+    background-color: var(--bg-color);
     color: var(--text-light);
-    line-height: 1.7;
+    line-height: 1.6;
 }
 
 .container {
     max-width: 1200px;
-    margin: auto;
+    margin: 0 auto;
     padding: 0 20px;
 }
 
-/* =========================
-   HEADER & NAV
-========================= */
+/*  Header & Nav  */
 .header {
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 1000;
-    background: rgba(11, 31, 26, 0.75);
-    backdrop-filter: blur(14px);
+    background: rgba(13, 13, 13, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 1rem 0;
     border-bottom: 1px solid var(--border-color);
 }
 
@@ -46,16 +42,16 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 0;
 }
 
 .logo {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 0.5rem;
     text-decoration: none;
     color: white;
-    font-weight: 700;
+    font-weight: 600;
+    font-size: 1.2rem;
 }
 
 .logo img {
@@ -69,9 +65,8 @@ body {
 }
 
 .nav-link {
-    color: var(--text-light);
     text-decoration: none;
-    font-weight: 500;
+    color: var(--text-light);
     transition: color 0.3s;
 }
 
@@ -79,145 +74,173 @@ body {
     color: var(--primary-green);
 }
 
-.nav-cta {
-    background: var(--primary-green);
-    color: #0B1F1A;
-    padding: 10px 22px;
-    border-radius: 10px;
-    font-weight: 700;
+.cta-button {
     text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.nav-cta {
+    background-color: var(--primary-green);
+    color: black;
 }
 
 .nav-cta:hover {
-    background: #fff;
+    background-color: white;
 }
 
-/* =========================
-   HERO
-========================= */
+.hamburger {
+    display: none;
+    cursor: pointer;
+}
+
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px 0;
+    background-color: white;
+}
+
+/*  Hero Section  */
 .hero {
-    min-height: 100vh;
-    padding-top: 120px;
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
     text-align: center;
+    min-height: 100vh;
+    padding-top: 100px;
+    overflow: hidden;
 }
 
 .hero-video {
     position: absolute;
-    inset: 0;
+    top: 50%;
+    left: 50%;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transform: translate(-50%, -50%);
     z-index: 1;
 }
 
 .hero-overlay {
     position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.55);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
     z-index: 2;
 }
 
 .hero-content {
     position: relative;
     z-index: 3;
+    width: 100%;
 }
 
 .hero-card {
-    background: rgba(17, 45, 39, 0.65);
-    backdrop-filter: blur(16px);
-    border: 1px solid var(--border-color);
-    border-radius: 22px;
-    padding: 3rem 2.5rem;
-    max-width: 850px;
-    margin: auto;
-    box-shadow: 0 25px 60px rgba(0,0,0,0.45);
+    background: rgba(18, 18, 18, 0.5); 
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px); 
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 2.5rem 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .registration-status {
     display: inline-block;
-    padding: 6px 18px;
-    border-radius: 999px;
+    padding: 5px 15px;
     border: 1px solid var(--primary-green);
     color: var(--primary-green);
-    font-size: 0.85rem;
-    margin-bottom: 1.5rem;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    background-color: rgba(0, 242, 145, 0.1); 
 }
 
 .hero h1 {
-    font-size: 5.5rem;
-    font-weight: 800;
-    color: white;
+    font-size: 6rem;
+    font-weight: 700;
+    color: white; 
+    text-shadow: none;
 }
 
 .hero p {
-    font-size: 1.2rem;
-    color: var(--text-light);
+    font-size: 1.25rem;
+    color: var(--text-light); 
     max-width: 600px;
     margin: 1rem auto;
+}
+
+.hero p strong {
+    color: white;
+    font-weight: 600;
 }
 
 .event-details {
     display: flex;
     justify-content: center;
     gap: 2rem;
-    margin: 2.5rem 0;
+    margin: 2rem 0;
+    color: var(--text-light);
 }
 
-/* =========================
-   BUTTONS
-========================= */
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
 .cta-button {
-    background: var(--primary-green);
-    color: #0B1F1A;
-    padding: 12px 26px;
-    border-radius: 12px;
-    font-weight: 700;
-    text-decoration: none;
-    transition: all 0.3s;
+    background-color: var(--primary-green);
+    color: black;
 }
-
 .cta-button:hover {
-    background: white;
+    background-color: white;
     transform: translateY(-3px);
 }
-
 .cta-button.secondary {
-    background: rgba(255,255,255,0.08);
-    color: var(--text-light);
-    border: 1px solid var(--border-color);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
-
 .cta-button.secondary:hover {
-    background: rgba(255,255,255,0.16);
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
-/* =========================
-   SECTIONS
-========================= */
+/*  General Section Styling  */
 .section {
-    padding: 90px 0;
+    padding: 80px 0;
 }
 
 .section-title {
     font-size: 3rem;
     text-align: center;
-    color: var(--primary-green);
+    margin-bottom: 1rem;
 }
 
 .section-subtitle {
     text-align: center;
     color: var(--text-dark);
     max-width: 600px;
-    margin: 1rem auto 4rem;
+    margin: 0 auto 3rem auto;
 }
 
-/* =========================
-   ABOUT / STATS
-========================= */
+.highlight {
+    color: var(--primary-green);
+}
+
+/*  About & Stats  */
 .about-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -227,60 +250,52 @@ body {
 
 .about-image img {
     width: 100%;
-    border-radius: 18px;
+    border-radius: 12px;
 }
 
 .stats-container {
     display: grid;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;
     margin-top: 4rem;
 }
 
 .stat-card {
     background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 18px;
-    padding: 2rem;
+    padding: 1.5rem;
+    border-radius: 12px;
     text-align: center;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.35);
 }
 
 .stat-card span {
-    font-size: 2.2rem;
-    font-weight: 800;
-    color: var(--primary-green);
+    font-size: 2rem;
+    font-weight: 700;
 }
 
-/* =========================
-   TRACKS
-========================= */
+/*  Tracks Section  */
 .tracks-grid {
     display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 1.8rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
 }
 
 .track-card {
     background: var(--card-bg);
-    border-radius: 18px;
-    padding: 2.5rem;
+    padding: 2rem;
+    border-radius: 12px;
     border: 1px solid var(--border-color);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.35);
-    transition: all 0.3s;
+    transition: border-color 0.3s, transform 0.3s;
 }
 
 .track-card:hover {
-    transform: translateY(-8px);
     border-color: var(--primary-green);
+    transform: translateY(-5px);
 }
 
-/* =========================
-   FAQ
-========================= */
+/*  FAQ Section  */
 .faq-container {
     max-width: 800px;
-    margin: auto;
+    margin: 0 auto;
 }
 
 .faq-item {
@@ -290,16 +305,26 @@ body {
 .faq-question {
     padding: 1.5rem;
     cursor: pointer;
-    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
 }
 
 .faq-question::after {
     content: '+';
-    float: right;
+    font-size: 1.5rem;
+    transition: transform 0.3s;
 }
 
 .faq-item.active .faq-question::after {
     transform: rotate(45deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
 }
 
 .faq-answer p {
@@ -307,19 +332,19 @@ body {
     color: var(--text-dark);
 }
 
-/* =========================
-   SPONSORS
-========================= */
+/*  Sponsors  */
 .sponsors-grid {
     display: flex;
     justify-content: center;
-    gap: 3rem;
+    align-items: center;
     flex-wrap: wrap;
+    gap: 3rem;
+    margin-top: 3rem;
 }
 
 .sponsors-grid img {
-    max-height: 120px;
-    opacity: 0.75;
+    max-height: 400px;
+    opacity: 0.7;
     transition: opacity 0.3s;
 }
 
@@ -327,12 +352,22 @@ body {
     opacity: 1;
 }
 
-/* =========================
-   FOOTER
-========================= */
+/* Small Sponsors */
+.small-sponsor {
+    max-width: 140px;
+    height: auto;
+}
+
+@media (max-width: 600px) {
+    .small-sponsor {
+        max-width: 90px;
+    }
+}
+
+/*  Footer  */
 .footer {
-    border-top: 1px solid var(--border-color);
     padding: 3rem 0;
+    border-top: 1px solid var(--border-color);
     text-align: center;
 }
 
@@ -340,30 +375,141 @@ body {
     display: flex;
     justify-content: center;
     gap: 1.5rem;
+    margin: 1rem 0;
 }
 
 .social-links a {
     color: var(--text-dark);
     text-decoration: none;
+    transition: color 0.3s;
 }
 
 .social-links a:hover {
     color: white;
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
+/*  Responsive Design  */
 @media (max-width: 768px) {
-    .hero h1 { font-size: 3.5rem; }
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 65px;
+        background: var(--bg-color);
+        width: 100%;
+        flex-direction: column;
+        text-align: center;
+        gap: 0;
+        transition: left 0.3s;
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .nav-menu li {
+        padding: 1rem;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .nav-cta {
+        display: none;
+    }
+
+    .hero h1 {
+        font-size: 4rem;
+    }
 
     .about-container,
     .stats-container,
     .tracks-grid {
         grid-template-columns: 1fr;
     }
+}
+/* Agenda Section */
+.agenda-section {
+  background: #0B1F1A;
+  padding: 80px 5%;
+  color: #EAFAF1;
+  font-family: 'Inter', sans-serif;
+}
 
-    .nav-menu {
-        display: none;
-    }
+.agenda-title {
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 60px;
+  color: #2ECC71;
+}
+
+.agenda-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 32px;
+}
+
+.agenda-card {
+  background: #112D27;
+  border-radius: 18px;
+  padding: 32px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+}
+
+.agenda-card h3 {
+  font-size: 22px;
+  margin-bottom: 24px;
+  color: #EAFAF1;
+}
+
+.agenda-item {
+  display: flex;
+  gap: 18px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.agenda-item:last-child {
+  border-bottom: none;
+}
+
+.agenda-time {
+  min-width: 120px;
+  font-weight: 600;
+  color: #2ECC71;
+  font-size: 14px;
+}
+
+.agenda-item p {
+  margin: 0;
+  font-size: 14px;
+  color: #EAFAF1;
+}
+
+.tag {
+  margin-left: 8px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.tag.hacking { background: #2ECC71; color: #0B1F1A; }
+.tag.break { background: #5DADE2; color: #0B1F1A; }
+.tag.talk { background: #F4D03F; color: #0B1F1A; }
+.tag.keynote { background: #AF7AC5; color: #0B1F1A; }
+.tag.judging { background: #EC7063; color: #0B1F1A; }
+.tag.logistics { background: #95A5A6; color: #0B1F1A; }
+.tag.official { background: #1ABC9C; color: #0B1F1A; }
+.tag.engagement { background: #F39C12; color: #0B1F1A; }
+
+@media (max-width: 768px) {
+  .agenda-title {
+    font-size: 28px;
+  }
+  .agenda-time {
+    min-width: 95px;
+  }
 }
