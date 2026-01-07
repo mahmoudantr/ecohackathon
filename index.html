@@ -2,315 +2,355 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>EcoHack2025 @ EUI</title>
-    <meta name="description" content="Join 100+ hackers at Egypt University of Informatics for a 36-hour marathon to debug the planet." />
-    <link rel="stylesheet" href="css/styles.css" />
-    <script src="js/script.js" defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>EcoHack2025 @ EUI</title>
+  <meta name="description"
+    content="Join 100+ hackers at Egypt University of Informatics for a 36-hour marathon to debug the planet." />
+
+  <!-- Optional (recommended): Load Inter font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+  <script src="js/script.js" defer></script>
 </head>
 
 <body>
 
-    <!-- Header -->
-    <header class="header">
-        <nav class="container navbar">
-            <a href="#home" class="logo">
-                <img src="images/logo.png" alt="EcoHack Logo">
-                <span>EcoHack</span>
-            </a>
-            <ul class="nav-menu">
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#tracks" class="nav-link">Tracks</a></li>
-                <li><a href="#faq" class="nav-link">FAQ</a></li>
-            </ul>
-            <a href="https://forms.gle/GDMTArye8ce1FmNr8" target="_blank" rel="noopener noreferrer" class="cta-button nav-cta">Apply Now</a>
-            <div class="hamburger">
-                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
-            </div>
-        </nav>
-    </header>
+  <!-- Header -->
+  <header class="header">
+    <nav class="container navbar">
+      <a href="#home" class="logo">
+        <img src="images/logo.png" alt="EcoHack Logo">
+        <span>EcoHack</span>
+      </a>
 
-    <main>
-        <!-- Hero Section -->
-        <section id="home" class="hero">
-            <video playsinline autoplay muted loop poster="images/hero-background.jpg" class="hero-video" preload="metadata">
-                <source src="images/background-video.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <div class="hero-overlay"></div>
-            <div class="container hero-content">
-                <div class="hero-card">
-                    <div class="registration-status">REGISTRATION OPEN FOR 2025</div>
-                    <h1>EcoHack</h1>
-                    <p>Join <strong>100+ hackers</strong> at Egypt University of Informatics for a 36-hour marathon to <strong>debug the planet</strong>.</p>
-                    <div class="event-details">
-                        <span>December 19-20, 2025</span>
-                        <span>EUI Campus, Knowledge City</span>
-                    </div>
-                    <div class="hero-buttons">
-                        <a href="https://forms.gle/GDMTArye8ce1FmNr8" target="_blank" rel="noopener noreferrer" class="cta-button">Apply now →</a>
-                        <a href="#" class="cta-button secondary">Sponsorship Deck</a>
-                    </div>
-                </div>
-            </div>
-        </section>
+      <ul class="nav-menu">
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#tracks" class="nav-link">Tracks</a></li>
+        <li><a href="#agenda" class="nav-link">Agenda</a></li>
+        <li><a href="#faq" class="nav-link">FAQ</a></li>
+      </ul>
 
-        <!-- About Section -->
-        <section id="about" class="section">
-            <div class="container about-container">
-                <div class="about-text">
-                    <h2>Code for a <span class="highlight">Greener</span> Tomorrow</h2>
-                    <p>EcoHack isn't just another hackathon. It's a movement. We're gathering the brightest minds in the MENA region at the Egypt University of Informatics to tackle the most pressing environmental challenges of our time.</p>
-                    <p>For 36 hours, you'll have access to cutting-edge hardware, mentorship from industry experts, and a community of passionate builders.</p>
-                </div>
-                <div class="about-image">
-                    <img src="images/event-photo-1.jpg" alt="Participants at EcoHack">
-                </div>
-            </div>
-            <div class="container stats-container">
-                <div class="stat-card"><span>100+</span><p>Hackers</p></div>
-                <div class="stat-card"><span>10K EGP</span><p>Prize Pool</p></div>
-                <div class="stat-card"><span>36</span><p>Hours</p></div>
-                <div class="stat-card"><span>4+</span><p>Workshops</p></div>
-            </div>
-        </section>
+      <a href="https://forms.gle/GDMTArye8ce1FmNr8" target="_blank" rel="noopener noreferrer"
+        class="cta-button nav-cta">Apply Now</a>
 
-        <!-- Tracks Section -->
-        <section id="tracks" class="section">
-            <div class="container">
-                <h2 class="section-title">Tracks</h2>
-                <p class="section-subtitle">Global challenges require global solutions. Pick your mission and build the future.</p>
-                <div class="tracks-grid">
-                    <div class="track-card">
-                        <h3>Smart Waste Management</h3>
-                        <p>Innovative solutions to manage and reduce waste efficiently.</p>
-                    </div>
-                    <div class="track-card">
-                        <h3>Green & Smart Cities</h3>
-                        <p>Design eco-friendly urban spaces with smart infrastructure.</p>
-                    </div>
-                    <div class="track-card">
-                        <h3>Renewable Energy Tech</h3>
-                        <p>Develop sustainable energy solutions using solar, wind, and other technologies.</p>
-                    </div>
-                    <div class="track-card">
-                        <h3>Smart Agriculture (AgriTech)</h3>
-                        <p>Revolutionize farming with IoT, AI, and sustainable practices.</p>
-                    </div>
-                    <div class="track-card">
-                        <h3>Water Conservation</h3>
-                        <p>Tackle water scarcity, purification, and sustainable usage.</p>
-                    </div>
-                    <div class="track-card">
-                        <h3>Circular Economy Tech</h3>
-                        <p>Design solutions for waste reduction, recycling, and upcycling materials.</p>
-                    </div>
-                    <div class="track-card">
-                        <h3>Climate Education (EdTech)</h3>
-                        <p>Create educational tools and programs to raise awareness about climate change.</p>
-                    </div>
-                    <div class="track-card">
-                        <h3>Climate Resilience & Early-Warning Systems</h3>
-                        <p>Develop systems to predict, mitigate, and adapt to extreme weather events.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-       <!-- نهاية الـ Tracks -->
-
-<!-- Agenda Section -->
-<section class="agenda-section">
-  <h2 class="agenda-title">EcoHack2025 Agenda</h2>
-
-  <div class="agenda-wrapper">
-    <!-- Day 1 -->
-    <div class="agenda-card">
-      <h3>Day 1 — Friday, Dec 19</h3>
-
-      <div class="agenda-item">
-        <span class="agenda-time">09:00 – 09:30 AM</span>
-        <p>Registration & Welcome Kits <span class="tag logistics">Logistics</span></p>
+      <div class="hamburger" aria-label="Open menu" role="button" tabindex="0">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
       </div>
+    </nav>
+  </header>
 
-      <div class="agenda-item">
-        <span class="agenda-time">09:30 – 10:00 AM</span>
-        <p>Opening Ceremony <span class="tag official">Official</span></p>
-      </div>
+  <main>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <video playsinline autoplay muted loop poster="images/hero-background.jpg" class="hero-video" preload="metadata">
+        <source src="images/background-video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
 
-      <div class="agenda-item">
-        <span class="agenda-time">10:00 – 10:30 AM</span>
-        <p>Icebreaker & Team Alignment <span class="tag engagement">Engagement</span></p>
-      </div>
+      <div class="hero-overlay"></div>
 
-      <div class="agenda-item">
-        <span class="agenda-time">10:30 – 11:30 PM</span>
-        <p>Project Planning  <span class="tag hacking">Hacking</span></p>
-      </div>
+      <div class="container hero-content">
+        <div class="hero-card">
+          <div class="registration-status">REGISTRATION OPEN FOR 2025</div>
 
-      <div class="agenda-item">
-        <span class="agenda-time">11:30 – 01:30 PM</span>
-        <p>Friday Prayer & Break <span class="tag break">Break</span></p>
-      </div>
+          <h1>EcoHack</h1>
 
-      <div class="agenda-item">
-        <span class="agenda-time">01:30 – 02:30 PM</span>
-        <p>Talk / Workshop – Eng. Hossam Emam <span class="tag talk">Talk</span></p>
-      </div>
+          <p>Join <strong>100+ hackers</strong> at Egypt University of Informatics for a 36-hour marathon to
+            <strong>debug the planet</strong>.
+          </p>
 
-      <div class="agenda-item">
-        <span class="agenda-time">02:30 – 06:30 PM</span>
-        <p>Project Building – Phase 1 <span class="tag hacking">Hacking</span></p>
-      </div>
+          <div class="event-details">
+            <span>December 19-20, 2025</span>
+            <span>EUI Campus, Knowledge City</span>
+          </div>
 
-      <div class="agenda-item">
-        <span class="agenda-time">06:30 – 06:45 PM</span>
-        <p>Coffee Break <span class="tag break">Break</span></p>
-      </div>
+          <div class="hero-buttons">
+            <a href="https://forms.gle/GDMTArye8ce1FmNr8" target="_blank" rel="noopener noreferrer"
+              class="cta-button">Apply now →</a>
 
-      <div class="agenda-item">
-        <span class="agenda-time">06:45 – 08:45 PM</span>
-        <p>Project Building – Phase 2 <span class="tag hacking">Hacking</span></p>
-      </div>
-
-      <div class="agenda-item">
-        <span class="agenda-time">08:45 – 09:00 PM</span>
-        <p>Day 1 Wrap-up <span class="tag official">Official</span></p>
-      </div>
-    </div>
-
-    <!-- Day 2 -->
-    <div class="agenda-card">
-      <h3>Day 2 — Saturday, Dec 20</h3>
-
-      <div class="agenda-item">
-        <span class="agenda-time">09:00 – 10:00 AM</span>
-        <p>Check-in & Coffee <span class="tag logistics">Logistics</span></p>
-      </div>
-
-      <div class="agenda-item">
-        <span class="agenda-time">10:00 – 12:00 PM</span>
-        <p>Project Building – Phase 3  <span class="tag hacking">Hacking</span></p>
-      </div>
-
-      <div class="agenda-item">
-        <span class="agenda-time">12:00 – 12:30 PM</span>
-        <p> Workshop <span class="tag engagement">Workshop</span></p>
-      </div>
-
-      <div class="agenda-item">
-        <span class="agenda-time">12:30 – 02:00 PM</span>
-        <p>Project Finalization  <span class="tag hacking">Hacking</span></p>
-      </div>
-
-      <div class="agenda-item">
-        <span class="agenda-time">02:00 – 02:45 PM</span>
-        <p>Free Time <span class="tag break">Break</span></p>
-      </div>
-
-      <div class="agenda-item">
-        <span class="agenda-time">02:45 – 04:45 PM</span>
-        <p>Pitch Preparation <span class="tag hacking">Hacking</span></p>
-      </div>
-
-      <div class="agenda-item">
-        <span class="agenda-time">04:45 – 07:00 PM</span>
-        <p>Final Presentations & Judging <span class="tag judging">Judging</span></p>
-      </div>
-
-      <div class="agenda-item">
-        <span class="agenda-time">07:00 – 07:30 PM</span>
-        <p>Awards & Closing Ceremony <span class="tag official">Official</span></p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-        <!-- FAQ Section -->
-        <section id="faq" class="section" style="background-color: rgba(61, 133, 104, 0.05); border-radius: 12px;">
-            <div class="container">
-                <h2 class="section-title">FAQ</h2>
-                <p class="section-subtitle">Got questions? We've got answers! Everything you need to know about EcoHack 2025.</p>
-                <div class="faq-container">
-
-                    <div class="faq-item">
-                        <div class="faq-question">Who can participate?</div>
-                        <div class="faq-answer">
-                            <p>EcoHack is open to university students specializing in Computer Science who are passionate about environmental sustainability.</p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <div class="faq-question">Do I need a team?</div>
-                        <div class="faq-answer">
-                            <p>You can hack solo, but we recommend teams of 3-4 people. Don't worry if you don't have one; we'll have team formation events at the start.</p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <div class="faq-question">Is it free?</div>
-                        <div class="faq-answer">
-                            <p>Yes! Admission is completely free. We provide a place to hack for the entire weekend.</p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <div class="faq-question">What is the focus of EcoHack?</div>
-                        <div class="faq-answer">
-                            <p>EcoHack is all about creating innovative solutions for environmental sustainability. You can build anything from apps to hardware that helps make the planet greener!</p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <div class="faq-question">Do I need coding experience?</div>
-                        <div class="faq-answer">
-                            <p>No prior experience is required! We welcome beginners and will have mentors and workshops to guide you through your project.</p>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- Sponsors Section -->
-        <section class="section">
-            <div class="container">
-                <h2 class="section-title">Backed by the Best</h2>
-                <p class="section-subtitle">We partner with organizations that share our vision for a sustainable future.</p>
-                <div class="sponsors-grid">
-                    <img src="images/sponsor-logo-1.jpg" alt="Sponsor Logo">
-                    <img src="images/sponsor-logo-2.png" alt="Sponsor Logo">
-                    <img src="images/gdg-logo-eui-white.png" alt="Sponsor Logo">
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container footer-container">
-            <h3>EcoHack2025 @ EUI</h3>
-            <p>Developed & Organized by <strong>Mahmoud Amr</strong></p>
-            <p>Contact us: 
-                <a href="mailto:info@ecohackathon.com">info@ecohackathon.com</a>
-            </p>
-            <div class="social-links">
-                <a href="https://www.instagram.com/ecohackathon" target="_blank" rel="noopener noreferrer">Instagram</a>
-                <a href="https://www.linkedin.com/company/ecohack/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                <a href="https://www.facebook.com/share/1DwdWNRnn2" target="_blank" rel="noopener noreferrer">Facebook</a>
-            </div>
-            <p>&copy; 2025 EcoHack. All rights reserved.</p>
+            <!-- Put your deck link here when you have it -->
+            <a href="#" class="cta-button secondary">Sponsorship Deck</a>
+          </div>
         </div>
-    </footer>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+      <div class="container about-container">
+        <div class="about-text">
+          <h2>Code for a <span class="highlight">Greener</span> Tomorrow</h2>
+          <p>EcoHack isn't just another hackathon. It's a movement. We're gathering the brightest minds in the MENA
+            region at the Egypt University of Informatics to tackle the most pressing environmental challenges of our
+            time.</p>
+          <p>For 36 hours, you'll have access to cutting-edge hardware, mentorship from industry experts, and a community
+            of passionate builders.</p>
+        </div>
+
+        <div class="about-image">
+          <img src="images/event-photo-1.jpg" alt="Participants at EcoHack">
+        </div>
+      </div>
+
+      <div class="container stats-container">
+        <div class="stat-card"><span>100+</span>
+          <p>Hackers</p>
+        </div>
+        <div class="stat-card"><span>10K EGP</span>
+          <p>Prize Pool</p>
+        </div>
+        <div class="stat-card"><span>36</span>
+          <p>Hours</p>
+        </div>
+        <div class="stat-card"><span>4+</span>
+          <p>Workshops</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tracks Section -->
+    <section id="tracks" class="section">
+      <div class="container">
+        <h2 class="section-title">Tracks</h2>
+        <p class="section-subtitle">Global challenges require global solutions. Pick your mission and build the future.</p>
+
+        <div class="tracks-grid">
+          <div class="track-card">
+            <h3>Smart Waste Management</h3>
+            <p>Innovative solutions to manage and reduce waste efficiently.</p>
+          </div>
+
+          <div class="track-card">
+            <h3>Green & Smart Cities</h3>
+            <p>Design eco-friendly urban spaces with smart infrastructure.</p>
+          </div>
+
+          <div class="track-card">
+            <h3>Renewable Energy Tech</h3>
+            <p>Develop sustainable energy solutions using solar, wind, and other technologies.</p>
+          </div>
+
+          <div class="track-card">
+            <h3>Smart Agriculture (AgriTech)</h3>
+            <p>Revolutionize farming with IoT, AI, and sustainable practices.</p>
+          </div>
+
+          <div class="track-card">
+            <h3>Water Conservation</h3>
+            <p>Tackle water scarcity, purification, and sustainable usage.</p>
+          </div>
+
+          <div class="track-card">
+            <h3>Circular Economy Tech</h3>
+            <p>Design solutions for waste reduction, recycling, and upcycling materials.</p>
+          </div>
+
+          <div class="track-card">
+            <h3>Climate Education (EdTech)</h3>
+            <p>Create educational tools and programs to raise awareness about climate change.</p>
+          </div>
+
+          <div class="track-card">
+            <h3>Climate Resilience & Early-Warning Systems</h3>
+            <p>Develop systems to predict, mitigate, and adapt to extreme weather events.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Agenda Section (added id="agenda") -->
+    <section id="agenda" class="agenda-section">
+      <h2 class="agenda-title">EcoHack2025 Agenda</h2>
+
+      <div class="agenda-wrapper">
+        <!-- Day 1 -->
+        <div class="agenda-card">
+          <h3>Day 1 — Friday, Dec 19</h3>
+
+          <div class="agenda-item">
+            <span class="agenda-time">09:00 – 09:30 AM</span>
+            <p>Registration & Welcome Kits <span class="tag logistics">Logistics</span></p>
+          </div>
+
+          <div class="agenda-item">
+            <span class="agenda-time">09:30 – 10:00 AM</span>
+            <p>Opening Ceremony <span class="tag official">Official</span></p>
+          </div>
+
+          <div class="agenda-item">
+            <span class="agenda-time">10:00 – 10:30 AM</span>
+            <p>Icebreaker & Team Alignment <span class="tag engagement">Engagement</span></p>
+          </div>
+
+          <div class="agenda-item">
+            <span class="agenda-time">10:30 – 11:30 AM</span>
+            <p>Project Planning <span class="tag hacking">Hacking</span></p>
+          </div>
+
+          <div class="agenda-item">
+            <span class="agenda-time">11:30 – 01:30 PM</span>
+            <p>Friday Prayer & Break <span class="tag break">Break</span></p>
+          </div>
+
+          <div class="agenda-item">
+            <span class="agenda-time">01:30 – 02:30 PM</span>
+            <p>Talk / Workshop – Eng. Hossam Emam <span class="tag talk">Talk</span></p>
+          </div>
+
+          <div class="agenda-item">
+            <span class="agenda-time">02:30 – 06:30 PM</span>
+            <p>Project Building – Phase 1 <span class="tag hacking">Hacking</span></p>
+          </div>
+
+          <div class="agenda-item">
+            <span class="agenda-time">06:30 – 06:45 PM</span>
+            <p>Coffee Break <span class="tag break">Break</span></p>
+          </div>
+
+          <div class="agenda-item">
+            <span class="agenda-time">06:45 – 08:45 PM</span>
+            <p>Project Building – Phase 2 <span class="tag hacking">Hacking</span></p>
+          </div>
+
+          <div class="agenda-item">
+            <span class="agenda-time">08:45 – 09:00 PM</span>
+            <p>Day 1 Wrap-up <span class="tag official">Official</span></p>
+          </div>
+        </div>
+
+        <!-- Day 2 -->
+        <div class="agenda-card">
+          <h3>Day 2 — Saturday, Dec 20</h3>
+
+          <div class="agenda-item">
+            <span class="agenda-time">09:00 – 10:00 AM</span>
+            <p>Check-in & Coffee <span class="tag logistics">Logistics</span></p>
+          </div>
+
+          <div class="agenda-item">
+            <span class="agenda-time">10:00 – 12:00 PM</span>
+            <p>Project Building – Phase 3 <span class="tag hacking">Hacking</span></p>
+          </div>
+
+          <div class="agenda-item">
+            <span class="agenda-time">12:00 – 12:30 PM</span>
+            <p>Workshop <span class="tag engagement">Workshop</span></p>
+          </div>
+
+          <div class="agenda-item">
+            <span class="agenda-time">12:30 – 02:00 PM</span>
+            <p>Project Finalization <span class="tag hacking">Hacking</span></p>
+          </div>
+
+          <div class="agenda-item">
+            <span class="agenda-time">02:00 – 02:45 PM</span>
+            <p>Free Time <span class="tag break">Break</span></p>
+          </div>
+
+          <div class="agenda-item">
+            <span class="agenda-time">02:45 – 04:45 PM</span>
+            <p>Pitch Preparation <span class="tag hacking">Hacking</span></p>
+          </div>
+
+          <div class="agenda-item">
+            <span class="agenda-time">04:45 – 07:00 PM</span>
+            <p>Final Presentations & Judging <span class="tag judging">Judging</span></p>
+          </div>
+
+          <div class="agenda-item">
+            <span class="agenda-time">07:00 – 07:30 PM</span>
+            <p>Awards & Closing Ceremony <span class="tag official">Official</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section (removed inline style; CSS handles it now) -->
+    <section id="faq" class="section">
+      <div class="container">
+        <h2 class="section-title">FAQ</h2>
+        <p class="section-subtitle">Got questions? We've got answers! Everything you need to know about EcoHack 2025.</p>
+
+        <div class="faq-container">
+          <div class="faq-item">
+            <div class="faq-question">Who can participate?</div>
+            <div class="faq-answer">
+              <p>EcoHack is open to university students specializing in Computer Science who are passionate about environmental sustainability.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">Do I need a team?</div>
+            <div class="faq-answer">
+              <p>You can hack solo, but we recommend teams of 3-4 people. Don't worry if you don't have one; we'll have team formation events at the start.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">Is it free?</div>
+            <div class="faq-answer">
+              <p>Yes! Admission is completely free. We provide a place to hack for the entire weekend.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">What is the focus of EcoHack?</div>
+            <div class="faq-answer">
+              <p>EcoHack is all about creating innovative solutions for environmental sustainability. You can build anything from apps to hardware that helps make the planet greener!</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">Do I need coding experience?</div>
+            <div class="faq-answer">
+              <p>No prior experience is required! We welcome beginners and will have mentors and workshops to guide you through your project.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sponsors Section -->
+    <section id="sponsors" class="section">
+      <div class="container">
+        <h2 class="section-title">Backed by the Best</h2>
+        <p class="section-subtitle">We partner with organizations that share our vision for a sustainable future.</p>
+
+        <div class="sponsors-grid">
+          <img src="images/sponsor-logo-1.jpg" alt="Sponsor Logo">
+          <img src="images/sponsor-logo-2.png" alt="Sponsor Logo">
+          <img src="images/gdg-logo-eui-white.png" alt="Sponsor Logo">
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer id="contact" class="footer">
+    <div class="container footer-container">
+      <h3>EcoHack2025 @ EUI</h3>
+      <p>Developed & Organized by <strong>Mahmoud Amr</strong></p>
+      <p>Contact us:
+        <a href="mailto:info@ecohackathon.com">info@ecohackathon.com</a>
+      </p>
+
+      <div class="social-links">
+        <a href="https://www.instagram.com/ecohackathon" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://www.linkedin.com/company/ecohack/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://www.facebook.com/share/1DwdWNRnn2" target="_blank" rel="noopener noreferrer">Facebook</a>
+      </div>
+
+      <p>&copy; 2025 EcoHack. All rights reserved.</p>
+    </div>
+  </footer>
 
 </body>
 </html>
-
-
-
-
-
-
-
