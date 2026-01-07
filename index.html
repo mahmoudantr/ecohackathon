@@ -8,12 +8,12 @@
   <title>EcoHack2025 @ EUI</title>
   <meta name="description"
     content="Join 100+ hackers at Egypt University of Informatics for a 36-hour marathon to debug the planet." />
+  <meta name="theme-color" content="#0b1f1a" />
 
-  <!-- Optional (recommended): Load Inter font -->
+  <!-- Optional (recommended): Inter font -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap"
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap"
     rel="stylesheet" />
 
   <link rel="stylesheet" href="css/styles.css" />
@@ -21,6 +21,18 @@
 </head>
 
 <body>
+  <!-- Skip link -->
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Floating background blobs -->
+  <div class="bg-blobs" aria-hidden="true">
+    <span class="blob b1"></span>
+    <span class="blob b2"></span>
+    <span class="blob b3"></span>
+  </div>
+
+  <!-- Cursor glow -->
+  <div class="cursor-glow" aria-hidden="true"></div>
 
   <!-- Header -->
   <header class="header">
@@ -46,7 +58,7 @@
     </nav>
   </header>
 
-  <main>
+  <main id="main">
     <!-- Hero Section -->
     <section id="home" class="hero">
       <video playsinline autoplay muted loop poster="images/hero-background.jpg" class="hero-video" preload="metadata">
@@ -75,7 +87,7 @@
             <a href="https://forms.gle/GDMTArye8ce1FmNr8" target="_blank" rel="noopener noreferrer"
               class="cta-button">Apply now →</a>
 
-            <!-- Put your deck link here when you have it -->
+            <!-- Put your deck link here -->
             <a href="#" class="cta-button secondary">Sponsorship Deck</a>
           </div>
         </div>
@@ -165,7 +177,7 @@
       </div>
     </section>
 
-    <!-- Agenda Section (added id="agenda") -->
+    <!-- Agenda -->
     <section id="agenda" class="agenda-section">
       <h2 class="agenda-title">EcoHack2025 Agenda</h2>
 
@@ -272,7 +284,7 @@
       </div>
     </section>
 
-    <!-- FAQ Section (removed inline style; CSS handles it now) -->
+    <!-- FAQ -->
     <section id="faq" class="section">
       <div class="container">
         <h2 class="section-title">FAQ</h2>
@@ -317,7 +329,7 @@
       </div>
     </section>
 
-    <!-- Sponsors Section -->
+    <!-- Sponsors -->
     <section id="sponsors" class="section">
       <div class="container">
         <h2 class="section-title">Backed by the Best</h2>
@@ -352,5 +364,11 @@
     </div>
   </footer>
 
+  <!-- Back to top -->
+  <button class="back-to-top" type="button" aria-label="Back to top">
+    ↑
+  </button>
+
 </body>
+
 </html>
