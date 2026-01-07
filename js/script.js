@@ -1,200 +1,145 @@
-// EcoHack2025 - Fajer UI interactions
+// js/script.js
+(function () {
+  const $ = (s, root = document) => root.querySelector(s);
+  const $$ = (s, root = document) => Array.from(root.querySelectorAll(s));
 
-document.addEventListener("DOMContentLoaded", () => {
-  const hamburger = document.querySelector(".hamburger");
-  const navMenu = document.querySelector(".nav-menu");
-  const navLinks = document.querySelectorAll(".nav-link");
-  const backToTop = document.querySelector(".back-to-top");
-  const cursorGlow = document.querySelector(".cursor-glow");
+  // Year
+  const yearEl = $("#yearNow");
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  // =========================
-  // Mobile nav toggle + a11y
-  // =========================
-  const closeMenu = () => {
-    if (!navMenu) return;
-    navMenu.classList.remove("active");
-    hamburger?.classList.remove("active");
-  };
-
-  const toggleMenu = () => {
-    if (!navMenu || !hamburger) return;
-    hamburger.classList.toggle("active");
-    navMenu.classList.toggle("active");
-  };
-
+  // Mobile nav
+  const hamburger = $(".hamburger");
+  const navMenu = $("#navMenu");
   if (hamburger && navMenu) {
-    hamburger.addEventListener("click", toggleMenu);
-
-    hamburger.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        toggleMenu();
-      }
+    hamburger.addEventListener("click", () => {
+      const isOpen = navMenu.classList.toggle("active");
+      hamburger.setAttribute("aria-expanded", String(isOpen));
     });
 
-    navLinks.forEach((link) => {
-      link.addEventListener("click", closeMenu);
-    });
-
-    // Close on outside click
-    document.addEventListener("click", (e) => {
-      const t = e.target;
-      const isInsideNav = navMenu.contains(t) || hamburger.contains(t);
-      if (!isInsideNav && navMenu.classList.contains("active")) closeMenu();
-    });
-
-    // Close on ESC
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") closeMenu();
+    $$(".nav-link", navMenu).forEach((a) => {
+      a.addEventListener("click", () => {
+        navMenu.classList.remove("active");
+        hamburger.setAttribute("aria-expanded", "false");
+      });
     });
   }
 
-  // =========================
   // FAQ accordion
-  // =========================
-  const faqItems = document.querySelectorAll(".faq-item");
-  faqItems.forEach((item) => {
-    const q = item.querySelector(".faq-question");
-    const a = item.querySelector(".faq-answer");
-    if (!q || !a) return;
+  $$(".faq-item").forEach((item) => {
+    const btn = $(".faq-question", item);
+    const ans = $(".faq-answer", item);
+    if (!btn || !ans) return;
 
-    q.setAttribute("tabindex", "0");
-
-    const toggle = () => {
-      const isOpen = item.classList.contains("active");
-
-      faqItems.forEach((it) => {
-        it.classList.remove("active");
-        const ans = it.querySelector(".faq-answer");
-        if (ans) ans.style.maxHeight = null;
+    btn.addEventListener("click", () => {
+      const isActive = item.classList.toggle("active");
+      // close others
+      $$(".faq-item").forEach((other) => {
+        if (other !== item) other.classList.remove("active");
       });
 
-      if (!isOpen) {
-        item.classList.add("active");
-        a.style.maxHeight = a.scrollHeight + "px";
-      }
-    };
+      // heights
+      $$(".faq-item").forEach((it) => {
+        const a = $(".faq-answer", it);
+        if (!a) return;
+        if (it.classList.contains("active")) {
+          a.style.maxHeight = a.scrollHeight + "px";
+        } else {
+          a.style.maxHeight = "0px";
+        }
+      });
 
-    q.addEventListener("click", toggle);
-    q.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        toggle();
-      }
+      // little safety
+      if (isActive) ans.style.maxHeight = ans.scrollHeight + "px";
     });
   });
 
-  // =========================
-  // Active nav link (IntersectionObserver)
-  // =========================
-  const sections = document.querySelectorAll("section[id]");
-  const linkById = {};
-  navLinks.forEach((l) => {
-    const href = l.getAttribute("href") || "";
-    if (href.startsWith("#")) linkById[href.slice(1)] = l;
-  });
+  // Gallery modal
+  const modal = $("#galleryModal");
+  const modalImg = $("#modalImg");
+  const prevBtn = $("#prevImg");
+  const nextBtn = $("#nextImg");
+  const closeEls = $$("#galleryModal [data-close]");
+  const galleryItems = $$("[data-gallery] .gallery-item");
 
-  const setActive = (id) => {
-    navLinks.forEach((l) => l.classList.remove("active"));
-    if (linkById[id]) linkById[id].classList.add("active");
-  };
+  let currentIndex = 0;
 
-  if (sections.length) {
-    const obs = new IntersectionObserver(
-      (entries) => {
-        // pick the most visible intersecting section
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => (b.intersectionRatio || 0) - (a.intersectionRatio || 0))[0];
-
-        if (visible) setActive(visible.target.id);
-      },
-      { root: null, threshold: [0.15, 0.25, 0.35, 0.5, 0.6] }
-    );
-    sections.forEach((s) => obs.observe(s));
+  function openModal(idx) {
+    if (!modal || !modalImg) return;
+    currentIndex = idx;
+    const full = galleryItems[idx]?.getAttribute("data-full");
+    if (!full) return;
+    modalImg.src = full;
+    modal.classList.add("show");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
   }
 
-  // =========================
-  // Scroll Reveal
-  // =========================
-  const revealTargets = document.querySelectorAll(
-    ".section, .agenda-section, .hero-card, .track-card, .stat-card, .agenda-card, .faq-container, .sponsors-grid, .footer"
-  );
+  function closeModal() {
+    if (!modal) return;
+    modal.classList.remove("show");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  }
 
-  revealTargets.forEach((el, i) => {
-    el.classList.add("reveal");
-    el.style.setProperty("--d", `${Math.min(i * 55, 420)}ms`);
+  function showNext(delta) {
+    if (!galleryItems.length) return;
+    currentIndex = (currentIndex + delta + galleryItems.length) % galleryItems.length;
+    openModal(currentIndex);
+  }
+
+  galleryItems.forEach((btn, idx) => btn.addEventListener("click", () => openModal(idx)));
+  closeEls.forEach((el) => el.addEventListener("click", closeModal));
+
+  if (prevBtn) prevBtn.addEventListener("click", () => showNext(-1));
+  if (nextBtn) nextBtn.addEventListener("click", () => showNext(1));
+
+  window.addEventListener("keydown", (e) => {
+    if (!modal || !modal.classList.contains("show")) return;
+    if (e.key === "Escape") closeModal();
+    if (e.key === "ArrowLeft") showNext(-1);
+    if (e.key === "ArrowRight") showNext(1);
   });
 
+  // Stars generator (lightweight)
+  const starsHost = $("[data-stars]");
+  if (starsHost) {
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const count = reduced ? 40 : 80;
+
+    for (let i = 0; i < count; i++) {
+      const s = document.createElement("span");
+      s.className = "star" + (Math.random() > 0.85 ? " big" : "");
+      s.style.left = Math.random() * 100 + "%";
+      s.style.top = Math.random() * 100 + "%";
+      s.style.animationDelay = (Math.random() * 2.8).toFixed(2) + "s";
+      s.style.opacity = (0.35 + Math.random() * 0.65).toFixed(2);
+      starsHost.appendChild(s);
+    }
+  }
+
+  // Parallax (mouse)
+  const parallaxEls = $$("[data-parallax]");
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  function setXY(x, y) {
+    // normalized around center
+    document.documentElement.style.setProperty("--mx", `${x}px`);
+    document.documentElement.style.setProperty("--my", `${y}px`);
+
+    // also move specific elements a bit (stronger + smoother)
+    parallaxEls.forEach((el) => {
+      const strength = parseFloat(el.getAttribute("data-parallax") || "0.15");
+      el.style.transform = `translate(${x * strength}px, ${y * strength}px) ${el.classList.contains("planet-bottom") ? "translateX(-50%)" : ""}`;
+    });
+  }
+
   if (!reducedMotion) {
-    const revealObs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("in");
-            revealObs.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.12 }
-    );
-
-    revealTargets.forEach((el) => revealObs.observe(el));
-  } else {
-    revealTargets.forEach((el) => el.classList.add("in"));
+    window.addEventListener("mousemove", (e) => {
+      const cx = window.innerWidth / 2;
+      const cy = window.innerHeight / 2;
+      const dx = (e.clientX - cx) / cx; // -1..1
+      const dy = (e.clientY - cy) / cy; // -1..1
+      setXY(dx * 14, dy * 12);
+    }, { passive: true });
   }
-
-  // =========================
-  // Back to top
-  // =========================
-  const onScroll = () => {
-    if (!backToTop) return;
-    if (window.scrollY > 700) backToTop.classList.add("show");
-    else backToTop.classList.remove("show");
-  };
-
-  window.addEventListener("scroll", onScroll, { passive: true });
-  onScroll();
-
-  backToTop?.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: reducedMotion ? "auto" : "smooth" });
-  });
-
-  // =========================
-  // Cursor glow (desktop only)
-  // =========================
-  const isTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0;
-
-  if (!reducedMotion && !isTouch && cursorGlow) {
-    let targetX = window.innerWidth / 2;
-    let targetY = window.innerHeight / 2;
-    let currentX = targetX;
-    let currentY = targetY;
-
-    cursorGlow.style.opacity = "1";
-
-    window.addEventListener(
-      "mousemove",
-      (e) => {
-        targetX = e.clientX;
-        targetY = e.clientY;
-      },
-      { passive: true }
-    );
-
-    const animate = () => {
-      // smooth follow
-      currentX += (targetX - currentX) * 0.12;
-      currentY += (targetY - currentY) * 0.12;
-      cursorGlow.style.left = `${currentX}px`;
-      cursorGlow.style.top = `${currentY}px`;
-      requestAnimationFrame(animate);
-    };
-
-    requestAnimationFrame(animate);
-  } else if (cursorGlow) {
-    cursorGlow.style.opacity = "0";
-  }
-});
+})();
