@@ -1,11 +1,10 @@
-// js/script.js
 (function () {
   const $ = (s, root = document) => root.querySelector(s);
   const $$ = (s, root = document) => Array.from(root.querySelectorAll(s));
 
   // Year
   const yearEl = $("#yearNow");
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
+  if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
   // Mobile nav
   const hamburger = $(".hamburger");
@@ -25,21 +24,23 @@
   }
 
   // FAQ accordion
-  $$(".faq-item").forEach((item) => {
-    const btn = $(".faq-question", item);
-    const ans = $(".faq-answer", item);
+  const faqItems = $$(".faq-item");
+  faqItems.forEach((item) => {
+    const btn = $(".faq-q", item);
+    const ans = $(".faq-a", item);
     if (!btn || !ans) return;
 
     btn.addEventListener("click", () => {
       const isActive = item.classList.toggle("active");
+
       // close others
-      $$(".faq-item").forEach((other) => {
+      faqItems.forEach((other) => {
         if (other !== item) other.classList.remove("active");
       });
 
-      // heights
-      $$(".faq-item").forEach((it) => {
-        const a = $(".faq-answer", it);
+      // set max heights
+      faqItems.forEach((it) => {
+        const a = $(".faq-a", it);
         if (!a) return;
         if (it.classList.contains("active")) {
           a.style.maxHeight = a.scrollHeight + "px";
@@ -48,7 +49,7 @@
         }
       });
 
-      // little safety
+      // safety
       if (isActive) ans.style.maxHeight = ans.scrollHeight + "px";
     });
   });
@@ -60,7 +61,6 @@
   const nextBtn = $("#nextImg");
   const closeEls = $$("#galleryModal [data-close]");
   const galleryItems = $$("[data-gallery] .gallery-item");
-
   let currentIndex = 0;
 
   function openModal(idx) {
@@ -89,7 +89,6 @@
 
   galleryItems.forEach((btn, idx) => btn.addEventListener("click", () => openModal(idx)));
   closeEls.forEach((el) => el.addEventListener("click", closeModal));
-
   if (prevBtn) prevBtn.addEventListener("click", () => showNext(-1));
   if (nextBtn) nextBtn.addEventListener("click", () => showNext(1));
 
@@ -104,15 +103,15 @@
   const starsHost = $("[data-stars]");
   if (starsHost) {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const count = reduced ? 40 : 80;
+    const count = reduced ? 34 : 64; // premium: less noisy than 80
 
     for (let i = 0; i < count; i++) {
       const s = document.createElement("span");
-      s.className = "star" + (Math.random() > 0.85 ? " big" : "");
+      s.className = "star" + (Math.random() > 0.86 ? " big" : "");
       s.style.left = Math.random() * 100 + "%";
       s.style.top = Math.random() * 100 + "%";
       s.style.animationDelay = (Math.random() * 2.8).toFixed(2) + "s";
-      s.style.opacity = (0.35 + Math.random() * 0.65).toFixed(2);
+      s.style.opacity = (0.32 + Math.random() * 0.62).toFixed(2);
       starsHost.appendChild(s);
     }
   }
@@ -122,24 +121,26 @@
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   function setXY(x, y) {
-    // normalized around center
     document.documentElement.style.setProperty("--mx", `${x}px`);
     document.documentElement.style.setProperty("--my", `${y}px`);
 
-    // also move specific elements a bit (stronger + smoother)
     parallaxEls.forEach((el) => {
-      const strength = parseFloat(el.getAttribute("data-parallax") || "0.15");
-      el.style.transform = `translate(${x * strength}px, ${y * strength}px) ${el.classList.contains("planet-bottom") ? "translateX(-50%)" : ""}`;
+      const strength = parseFloat(el.getAttribute("data-parallax") || "0.14");
+      el.style.transform = `translate(${x * strength}px, ${y * strength}px)`;
     });
   }
 
   if (!reducedMotion) {
-    window.addEventListener("mousemove", (e) => {
-      const cx = window.innerWidth / 2;
-      const cy = window.innerHeight / 2;
-      const dx = (e.clientX - cx) / cx; // -1..1
-      const dy = (e.clientY - cy) / cy; // -1..1
-      setXY(dx * 14, dy * 12);
-    }, { passive: true });
+    window.addEventListener(
+      "mousemove",
+      (e) => {
+        const cx = window.innerWidth / 2;
+        const cy = window.innerHeight / 2;
+        const dx = (e.clientX - cx) / cx; // -1..1
+        const dy = (e.clientY - cy) / cy; // -1..1
+        setXY(dx * 12, dy * 10); // slightly calmer than before
+      },
+      { passive: true }
+    );
   }
 })();
