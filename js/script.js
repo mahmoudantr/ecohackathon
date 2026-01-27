@@ -1,4 +1,4 @@
-(function () {
+(() => {
   const $ = (s, root = document) => root.querySelector(s);
   const $$ = (s, root = document) => Array.from(root.querySelectorAll(s));
 
@@ -15,132 +15,241 @@
       hamburger.setAttribute("aria-expanded", String(isOpen));
     });
 
-    $$(".nav-link", navMenu).forEach((a) => {
+    // Close menu on link click
+    $$(".nav__link, .btn", navMenu).forEach((a) => {
       a.addEventListener("click", () => {
         navMenu.classList.remove("active");
         hamburger.setAttribute("aria-expanded", "false");
       });
     });
+
+    // Close on outside click (mobile)
+    document.addEventListener("click", (e) => {
+      const isMobile = window.matchMedia("(max-width: 760px)").matches;
+      if (!isMobile) return;
+      if (!navMenu.classList.contains("active")) return;
+      const target = e.target;
+      if (!target) return;
+      if (navMenu.contains(target) || hamburger.contains(target)) return;
+      navMenu.classList.remove("active");
+      hamburger.setAttribute("aria-expanded", "false");
+    });
   }
 
   // FAQ accordion
-  const faqItems = $$(".faq-item");
-  faqItems.forEach((item) => {
-    const btn = $(".faq-q", item);
-    const ans = $(".faq-a", item);
-    if (!btn || !ans) return;
-
-    btn.addEventListener("click", () => {
-      const isActive = item.classList.toggle("active");
-
-      // close others
-      faqItems.forEach((other) => {
-        if (other !== item) other.classList.remove("active");
+  const faqList = $("#faqList");
+  if (faqList) {
+    const qs = $$(".faq__q", faqList);
+    qs.forEach((q) => {
+      q.addEventListener("click", () => {
+        const expanded = q.getAttribute("aria-expanded") === "true";
+        // close others
+        qs.forEach((x) => {
+          x.setAttribute("aria-expanded", "false");
+          const panel = x.nextElementSibling;
+          if (panel) panel.hidden = true;
+        });
+        // open current
+        q.setAttribute("aria-expanded", String(!expanded));
+        const a = q.nextElementSibling;
+        if (a) a.hidden = expanded;
       });
-
-      // set max heights
-      faqItems.forEach((it) => {
-        const a = $(".faq-a", it);
-        if (!a) return;
-        if (it.classList.contains("active")) {
-          a.style.maxHeight = a.scrollHeight + "px";
-        } else {
-          a.style.maxHeight = "0px";
-        }
-      });
-
-      // safety
-      if (isActive) ans.style.maxHeight = ans.scrollHeight + "px";
     });
-  });
+  }
 
-  // Gallery modal
+  // Scroll reveal
+  const reveals = $$(".reveal");
+  if (reveals.length) {
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) {
+      reveals.forEach((el) => el.classList.add("is-in"));
+    } else {
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("is-in");
+              io.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.12 }
+      );
+      reveals.forEach((el) => io.observe(el));
+    }
+  }
+
+  // Scrollspy (active nav link)
+  const sections = ["about", "tracks", "highlights", "sponsors", "faq"]
+    .map((id) => document.getElementById(id))
+    .filter(Boolean);
+
+  const navLinks = $$(".nav__link").map((a) => ({
+    a,
+    hash: a.getAttribute("href"),
+  }));
+
+  const setActive = (id) => {
+    navLinks.forEach(({ a, hash }) => {
+      const isActive = hash === `#${id}`;
+      a.classList.toggle("is-active", isActive);
+    });
+  };
+
+  if (sections.length) {
+    const spy = new IntersectionObserver(
+      (entries) => {
+        // choose the most visible intersecting section
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => (b.intersectionRatio || 0) - (a.intersectionRatio || 0))[0];
+        if (visible?.target?.id) setActive(visible.target.id);
+      },
+      { rootMargin: "-20% 0px -70% 0px", threshold: [0.05, 0.1, 0.2, 0.35] }
+    );
+    sections.forEach((s) => spy.observe(s));
+  }
+
+  // Back to top
+  const toTop = $(".toTop");
+  if (toTop) {
+    const toggleTop = () => {
+      const y = window.scrollY || document.documentElement.scrollTop;
+      toTop.classList.toggle("show", y > 650);
+    };
+    toggleTop();
+    window.addEventListener("scroll", toggleTop, { passive: true });
+    toTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+  }
+
+  // Highlights modal (A11y focus trap + arrows + escape)
   const modal = $("#galleryModal");
   const modalImg = $("#modalImg");
-  const prevBtn = $("#prevImg");
-  const nextBtn = $("#nextImg");
-  const closeEls = $$("#galleryModal [data-close]");
-  const galleryItems = $$("[data-gallery] .gallery-item");
-  let currentIndex = 0;
+  const modalCaption = $("#modalCaption");
+  const shots = $$("#galleryGrid .shot");
 
-  function openModal(idx) {
-    if (!modal || !modalImg) return;
+  let currentIndex = 0;
+  let lastFocusEl = null;
+
+  const getFocusable = (container) =>
+    Array.from(
+      container.querySelectorAll(
+        'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'
+      )
+    );
+
+  const trapFocus = (e) => {
+    if (!modal || !modal.classList.contains("show")) return;
+    if (e.key !== "Tab") return;
+
+    const docEl = $(".modal__content", modal);
+    if (!docEl) return;
+
+    const focusables = getFocusable(docEl);
+    if (!focusables.length) return;
+
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  };
+
+  const openModal = (idx) => {
+    if (!modal || !modalImg || !shots.length) return;
+    lastFocusEl = document.activeElement;
+
     currentIndex = idx;
-    const full = galleryItems[idx]?.getAttribute("data-full");
-    if (!full) return;
-    modalImg.src = full;
+    const full = shots[idx].getAttribute("data-full");
+    const alt = shots[idx].getAttribute("data-alt") || "Gallery image";
+
+    modalImg.src = full || "";
+    modalImg.alt = alt;
+    modalCaption.textContent = alt;
+
     modal.classList.add("show");
     modal.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
-  }
 
-  function closeModal() {
+    const docEl = $(".modal__content", modal);
+    if (docEl) {
+      docEl.setAttribute("tabindex", "-1");
+      docEl.focus();
+    }
+
+    window.addEventListener("keydown", onModalKey);
+    window.addEventListener("keydown", trapFocus);
+  };
+
+  const closeModal = () => {
     if (!modal) return;
     modal.classList.remove("show");
     modal.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";
-  }
 
-  function showNext(delta) {
-    if (!galleryItems.length) return;
-    currentIndex = (currentIndex + delta + galleryItems.length) % galleryItems.length;
-    openModal(currentIndex);
-  }
+    window.removeEventListener("keydown", onModalKey);
+    window.removeEventListener("keydown", trapFocus);
 
-  galleryItems.forEach((btn, idx) => btn.addEventListener("click", () => openModal(idx)));
-  closeEls.forEach((el) => el.addEventListener("click", closeModal));
-  if (prevBtn) prevBtn.addEventListener("click", () => showNext(-1));
-  if (nextBtn) nextBtn.addEventListener("click", () => showNext(1));
+    if (lastFocusEl && typeof lastFocusEl.focus === "function") lastFocusEl.focus();
+  };
 
-  window.addEventListener("keydown", (e) => {
+  const showIndex = (idx) => {
+    if (!shots.length) return;
+    currentIndex = (idx + shots.length) % shots.length;
+    const full = shots[currentIndex].getAttribute("data-full");
+    const alt = shots[currentIndex].getAttribute("data-alt") || "Gallery image";
+    modalImg.src = full || "";
+    modalImg.alt = alt;
+    modalCaption.textContent = alt;
+  };
+
+  const onModalKey = (e) => {
     if (!modal || !modal.classList.contains("show")) return;
     if (e.key === "Escape") closeModal();
-    if (e.key === "ArrowLeft") showNext(-1);
-    if (e.key === "ArrowRight") showNext(1);
+    if (e.key === "ArrowRight") showIndex(currentIndex + 1);
+    if (e.key === "ArrowLeft") showIndex(currentIndex - 1);
+  };
+
+  if (modal && modalImg && shots.length) {
+    shots.forEach((b, i) => b.addEventListener("click", () => openModal(i)));
+
+    modal.addEventListener("click", (e) => {
+      const t = e.target;
+      if (!t) return;
+      if (t.matches("[data-close]")) closeModal();
+    });
+
+    const prev = $("[data-prev]", modal);
+    const next = $("[data-next]", modal);
+    if (prev) prev.addEventListener("click", () => showIndex(currentIndex - 1));
+    if (next) next.addEventListener("click", () => showIndex(currentIndex + 1));
+  }
+
+  // Prevent hash-jump offset under sticky header
+  const header = $(".header");
+  const headerH = () => (header ? header.getBoundingClientRect().height : 0);
+
+  const smoothToHash = (hash) => {
+    const el = document.querySelector(hash);
+    if (!el) return;
+    const top = el.getBoundingClientRect().top + window.scrollY - headerH() - 10;
+    window.scrollTo({ top, behavior: "smooth" });
+  };
+
+  document.addEventListener("click", (e) => {
+    const a = e.target?.closest?.('a[href^="#"]');
+    if (!a) return;
+    const hash = a.getAttribute("href");
+    if (!hash || hash === "#") return;
+    if (!document.querySelector(hash)) return;
+    e.preventDefault();
+    history.pushState(null, "", hash);
+    smoothToHash(hash);
   });
 
-  // Stars generator (lightweight)
-  const starsHost = $("[data-stars]");
-  if (starsHost) {
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const count = reduced ? 34 : 64; // premium: less noisy than 80
-
-    for (let i = 0; i < count; i++) {
-      const s = document.createElement("span");
-      s.className = "star" + (Math.random() > 0.86 ? " big" : "");
-      s.style.left = Math.random() * 100 + "%";
-      s.style.top = Math.random() * 100 + "%";
-      s.style.animationDelay = (Math.random() * 2.8).toFixed(2) + "s";
-      s.style.opacity = (0.32 + Math.random() * 0.62).toFixed(2);
-      starsHost.appendChild(s);
-    }
-  }
-
-  // Parallax (mouse)
-  const parallaxEls = $$("[data-parallax]");
-  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  function setXY(x, y) {
-    document.documentElement.style.setProperty("--mx", `${x}px`);
-    document.documentElement.style.setProperty("--my", `${y}px`);
-
-    parallaxEls.forEach((el) => {
-      const strength = parseFloat(el.getAttribute("data-parallax") || "0.14");
-      el.style.transform = `translate(${x * strength}px, ${y * strength}px)`;
-    });
-  }
-
-  if (!reducedMotion) {
-    window.addEventListener(
-      "mousemove",
-      (e) => {
-        const cx = window.innerWidth / 2;
-        const cy = window.innerHeight / 2;
-        const dx = (e.clientX - cx) / cx; // -1..1
-        const dy = (e.clientY - cy) / cy; // -1..1
-        setXY(dx * 12, dy * 10); // slightly calmer than before
-      },
-      { passive: true }
-    );
-  }
 })();
