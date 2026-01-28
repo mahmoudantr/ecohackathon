@@ -1,248 +1,228 @@
-(() => {
+(function () {
   const $ = (s, root = document) => root.querySelector(s);
   const $$ = (s, root = document) => Array.from(root.querySelectorAll(s));
 
-  // Footer year
-  const yearEl = $("#year");
+  // Year
+  const yearEl = $("#yearNow");
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
-  // Mobile menu
-  const menuBtn = $(".menuBtn");
-  const menu = $("#menu");
-  if (menuBtn && menu) {
-    menuBtn.addEventListener("click", () => {
-      const open = menu.classList.toggle("active");
-      menuBtn.setAttribute("aria-expanded", String(open));
+  // Mobile nav
+  const hamburger = $(".hamburger");
+  const navMenu = $("#navMenu");
+
+  function closeMenu() {
+    if (!navMenu || !hamburger) return;
+    navMenu.classList.remove("active");
+    hamburger.setAttribute("aria-expanded", "false");
+  }
+
+  if (hamburger && navMenu) {
+    hamburger.addEventListener("click", () => {
+      const isOpen = navMenu.classList.toggle("active");
+      hamburger.setAttribute("aria-expanded", String(isOpen));
     });
 
-    // close on clicking any link inside menu
-    $$("a", menu).forEach((a) => {
-      a.addEventListener("click", () => {
-        menu.classList.remove("active");
-        menuBtn.setAttribute("aria-expanded", "false");
-      });
-    });
+    $$(".nav-link", navMenu).forEach((a) => a.addEventListener("click", closeMenu));
 
-    // close on outside click (mobile)
-    document.addEventListener("click", (e) => {
-      const isMobile = window.matchMedia("(max-width: 760px)").matches;
-      if (!isMobile) return;
-      if (!menu.classList.contains("active")) return;
-      const t = e.target;
-      if (!t) return;
-      if (menu.contains(t) || menuBtn.contains(t)) return;
-      menu.classList.remove("active");
-      menuBtn.setAttribute("aria-expanded", "false");
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeMenu();
     });
   }
 
-  // Smooth scroll with sticky header offset
-  const topbar = $(".topbar");
-  const headerH = () => (topbar ? topbar.getBoundingClientRect().height : 0);
-
-  const smoothToHash = (hash) => {
-    const el = document.querySelector(hash);
-    if (!el) return;
-    const y = el.getBoundingClientRect().top + window.scrollY - headerH() - 10;
-    window.scrollTo({ top: y, behavior: "smooth" });
-  };
-
-  document.addEventListener("click", (e) => {
-    const a = e.target?.closest?.('a[href^="#"]');
-    if (!a) return;
-    const hash = a.getAttribute("href");
-    if (!hash || hash === "#") return;
-    if (!document.querySelector(hash)) return;
-    e.preventDefault();
-    history.pushState(null, "", hash);
-    smoothToHash(hash);
-  });
-
-  // Scroll reveal
-  const reveals = $$(".reveal");
-  if (reveals.length) {
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) {
-      reveals.forEach((el) => el.classList.add("is-in"));
-    } else {
-      const io = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((en) => {
-            if (en.isIntersecting) {
-              en.target.classList.add("is-in");
-              io.unobserve(en.target);
-            }
-          });
-        },
-        { threshold: 0.12 }
-      );
-      reveals.forEach((el) => io.observe(el));
-    }
-  }
-
-  // Scrollspy (active .lnk)
-  const sectionIds = ["about", "experience", "tracks", "highlights", "sponsors", "faq"];
-  const sections = sectionIds.map((id) => document.getElementById(id)).filter(Boolean);
-  const navLinks = $$(".lnk").map((a) => ({ a, hash: a.getAttribute("href") }));
-
-  const setActive = (id) => {
-    navLinks.forEach(({ a, hash }) => a.classList.toggle("is-active", hash === `#${id}`));
-  };
+  // ScrollSpy (active nav)
+  const navLinks = $$(".nav-link");
+  const sections = navLinks
+    .map((a) => {
+      const id = a.getAttribute("href");
+      if (!id || !id.startsWith("#")) return null;
+      const el = $(id);
+      return el ? { a, el } : null;
+    })
+    .filter(Boolean);
 
   if (sections.length) {
     const spy = new IntersectionObserver(
       (entries) => {
         const visible = entries
-          .filter((x) => x.isIntersecting)
+          .filter((e) => e.isIntersecting)
           .sort((a, b) => (b.intersectionRatio || 0) - (a.intersectionRatio || 0))[0];
-        if (visible?.target?.id) setActive(visible.target.id);
-      },
-      { rootMargin: "-20% 0px -70% 0px", threshold: [0.05, 0.1, 0.2, 0.35] }
-    );
-    sections.forEach((s) => spy.observe(s));
-  }
 
-  // Back to top
-  const toTop = $(".toTop");
-  if (toTop) {
-    const onScroll = () => {
-      const y = window.scrollY || document.documentElement.scrollTop;
-      toTop.classList.toggle("show", y > 650);
-    };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    toTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
-  }
+        if (!visible) return;
 
-  // FAQ accordion (matches .q + next .a)
-  const faqList = $("#faqList");
-  if (faqList) {
-    const qs = $$(".q", faqList);
-    qs.forEach((q) => {
-      q.addEventListener("click", () => {
-        const expanded = q.getAttribute("aria-expanded") === "true";
-        // close others
-        qs.forEach((x) => {
-          x.setAttribute("aria-expanded", "false");
-          const a = x.nextElementSibling;
-          if (a) a.hidden = true;
-          const icon = x.querySelector("span");
-          if (icon) icon.textContent = "+";
+        sections.forEach(({ a, el }) => {
+          const isActive = el === visible.target;
+          a.classList.toggle("is-active", isActive);
+          if (isActive) a.setAttribute("aria-current", "page");
+          else a.removeAttribute("aria-current");
         });
+      },
+      { threshold: [0.2, 0.35, 0.5, 0.65] }
+    );
 
-        // toggle current
-        q.setAttribute("aria-expanded", String(!expanded));
-        const a = q.nextElementSibling;
-        if (a) a.hidden = expanded;
-
-        const icon = q.querySelector("span");
-        if (icon) icon.textContent = expanded ? "+" : "−";
-      });
-    });
+    sections.forEach(({ el }) => spy.observe(el));
   }
 
-  // Gallery modal (your HTML: #modal, .modal__bg, .modal__box, .icon, .nav, .frame, #modalImg, #modalCap)
-  const modal = $("#modal");
+  // Reveal on scroll
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const reveals = $$(".reveal");
+
+  if (!reducedMotion && reveals.length) {
+    const revObs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("in");
+            revObs.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -6% 0px" }
+    );
+    reveals.forEach((el) => revObs.observe(el));
+  } else {
+    reveals.forEach((el) => el.classList.add("in"));
+  }
+
+  // FAQ accordion (accessible)
+  const faqItems = $$(".faq-item");
+  faqItems.forEach((item, idx) => {
+    const btn = $(".faq-question", item);
+    const ans = $(".faq-answer", item);
+    if (!btn || !ans) return;
+
+    const ansId = `faq-answer-${idx + 1}`;
+    ans.id = ansId;
+    btn.setAttribute("aria-controls", ansId);
+    btn.setAttribute("aria-expanded", "false");
+    ans.setAttribute("role", "region");
+    ans.setAttribute("aria-hidden", "true");
+
+    btn.addEventListener("click", () => {
+      const isActive = item.classList.toggle("active");
+
+      faqItems.forEach((other) => {
+        if (other !== item) {
+          other.classList.remove("active");
+          const ob = $(".faq-question", other);
+          const oa = $(".faq-answer", other);
+          if (ob) ob.setAttribute("aria-expanded", "false");
+          if (oa) {
+            oa.style.maxHeight = "0px";
+            oa.setAttribute("aria-hidden", "true");
+          }
+        }
+      });
+
+      btn.setAttribute("aria-expanded", String(isActive));
+      ans.setAttribute("aria-hidden", String(!isActive));
+
+      if (isActive) ans.style.maxHeight = ans.scrollHeight + "px";
+      else ans.style.maxHeight = "0px";
+    });
+  });
+
+  // Gallery modal
+  const modal = $("#galleryModal");
   const modalImg = $("#modalImg");
-  const modalCap = $("#modalCap");
-  const shots = $$("#gallery .shot");
+  const prevBtn = $("#prevImg");
+  const nextBtn = $("#nextImg");
+  const closeEls = $$("#galleryModal [data-close]");
+  const galleryItems = $$("[data-gallery] .gallery-item");
 
   let currentIndex = 0;
   let lastFocusEl = null;
 
-  const getFocusable = (container) =>
-    Array.from(
-      container.querySelectorAll(
-        'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'
-      )
-    );
-
-  const trapFocus = (e) => {
-    if (!modal || !modal.classList.contains("show")) return;
-    if (e.key !== "Tab") return;
-
-    const box = $(".modal__box", modal);
-    if (!box) return;
-
-    const focusables = getFocusable(box);
-    if (!focusables.length) return;
-
-    const first = focusables[0];
-    const last = focusables[focusables.length - 1];
-
-    if (e.shiftKey && document.activeElement === first) {
-      e.preventDefault();
-      last.focus();
-    } else if (!e.shiftKey && document.activeElement === last) {
-      e.preventDefault();
-      first.focus();
-    }
-  };
-
-  const showIndex = (idx) => {
-    if (!shots.length) return;
-    currentIndex = (idx + shots.length) % shots.length;
-
-    const full = shots[currentIndex].getAttribute("data-full") || "";
-    const alt = shots[currentIndex].getAttribute("data-alt") || "Highlight";
-
-    if (modalImg) {
-      modalImg.src = full;
-      modalImg.alt = alt;
-    }
-    if (modalCap) modalCap.textContent = alt;
-  };
-
-  const openModal = (idx) => {
-    if (!modal || !shots.length) return;
+  function openModal(idx) {
+    if (!modal || !modalImg) return;
     lastFocusEl = document.activeElement;
-    showIndex(idx);
+    currentIndex = idx;
 
+    const full = galleryItems[idx]?.getAttribute("data-full");
+    if (!full) return;
+
+    modalImg.src = full;
     modal.classList.add("show");
     modal.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
 
-    const box = $(".modal__box", modal);
-    if (box) {
-      box.setAttribute("tabindex", "-1");
-      box.focus();
-    }
+    const closeBtn = $(".modal-close", modal);
+    if (closeBtn) closeBtn.focus();
+  }
 
-    window.addEventListener("keydown", onModalKey);
-    window.addEventListener("keydown", trapFocus);
-  };
-
-  const closeModal = () => {
+  function closeModal() {
     if (!modal) return;
     modal.classList.remove("show");
     modal.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";
 
-    window.removeEventListener("keydown", onModalKey);
-    window.removeEventListener("keydown", trapFocus);
-
     if (lastFocusEl && typeof lastFocusEl.focus === "function") lastFocusEl.focus();
-  };
+    lastFocusEl = null;
+  }
 
-  const onModalKey = (e) => {
+  function showNext(delta) {
+    if (!galleryItems.length) return;
+    currentIndex = (currentIndex + delta + galleryItems.length) % galleryItems.length;
+    openModal(currentIndex);
+  }
+
+  galleryItems.forEach((btn, idx) => btn.addEventListener("click", () => openModal(idx)));
+  closeEls.forEach((el) => el.addEventListener("click", closeModal));
+  if (prevBtn) prevBtn.addEventListener("click", () => showNext(-1));
+  if (nextBtn) nextBtn.addEventListener("click", () => showNext(1));
+
+  window.addEventListener("keydown", (e) => {
     if (!modal || !modal.classList.contains("show")) return;
     if (e.key === "Escape") closeModal();
-    if (e.key === "ArrowRight") showIndex(currentIndex + 1);
-    if (e.key === "ArrowLeft") showIndex(currentIndex - 1);
-  };
+    if (e.key === "ArrowLeft") showNext(-1);
+    if (e.key === "ArrowRight") showNext(1);
+  });
 
-  if (modal && shots.length) {
-    shots.forEach((btn, i) => btn.addEventListener("click", () => openModal(i)));
+  // Stars generator
+  const starsHost = $("[data-stars]");
+  if (starsHost) {
+    const small = window.innerWidth < 700;
+    const count = reducedMotion ? 34 : (small ? 58 : 82);
 
-    modal.addEventListener("click", (e) => {
-      const t = e.target;
-      if (!t) return;
-      if (t.matches("[data-close]")) closeModal();
+    for (let i = 0; i < count; i++) {
+      const s = document.createElement("span");
+      s.className = "star" + (Math.random() > 0.86 ? " big" : "");
+      s.style.left = Math.random() * 100 + "%";
+      s.style.top = Math.random() * 100 + "%";
+      s.style.animationDelay = (Math.random() * 2.8).toFixed(2) + "s";
+      s.style.opacity = (0.35 + Math.random() * 0.65).toFixed(2);
+      starsHost.appendChild(s);
+    }
+  }
+
+  // Parallax (ONLY elements with data-parallax — planets/rings)
+  const parallaxEls = $$("[data-parallax]");
+  let rafId = 0;
+  let targetX = 0, targetY = 0;
+
+  function applyParallax() {
+    rafId = 0;
+    parallaxEls.forEach((el) => {
+      const strength = parseFloat(el.getAttribute("data-parallax") || "0.15");
+      el.style.setProperty("--px", `${targetX * strength}px`);
+      el.style.setProperty("--py", `${targetY * strength}px`);
     });
+  }
 
-    const prev = $("[data-prev]", modal);
-    const next = $("[data-next]", modal);
-    if (prev) prev.addEventListener("click", () => showIndex(currentIndex - 1));
-    if (next) next.addEventListener("click", () => showIndex(currentIndex + 1));
+  if (!reducedMotion && parallaxEls.length) {
+    window.addEventListener(
+      "mousemove",
+      (e) => {
+        const cx = window.innerWidth / 2;
+        const cy = window.innerHeight / 2;
+        const dx = (e.clientX - cx) / cx; // -1..1
+        const dy = (e.clientY - cy) / cy; // -1..1
+
+        targetX = dx * 14;
+        targetY = dy * 12;
+
+        if (!rafId) rafId = requestAnimationFrame(applyParallax);
+      },
+      { passive: true }
+    );
   }
 })();
