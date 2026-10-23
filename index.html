@@ -1,422 +1,423 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>EcoHack — Annual Sustainability Hackathon</title>
-  <meta name="description" content="EcoHack is an annual sustainability hackathon—bringing builders together to debug the planet through technology." />
-  <meta name="theme-color" content="#071612" />
-
-  <!-- Open Graph / Social -->
-  <meta property="og:title" content="EcoHack — Debug the Planet" />
-  <meta property="og:description" content="An annual sustainability hackathon: builders, mentors, workshops—shipping climate & sustainability tech." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="images/og.jpg" />
-  <meta property="og:url" content="https://ecohackathon.com/" />
-  <meta name="twitter:card" content="summary_large_image" />
-
-  <link rel="stylesheet" href="css/styles.css" />
-  <script src="js/script.js" defer></script>
-</head>
-
-<body>
-  <a class="skip-link" href="#main">Skip to content</a>
-
-  <header class="header" id="top">
-    <nav class="container navbar" aria-label="Primary navigation">
-      <a href="#top" class="logo" aria-label="EcoHack Home">
-        <img src="images/logo.png" alt="EcoHack logo" />
-        <span>EcoHack</span>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>EcoHack — Build for a planet worth building for</title>
+    <meta name="description" content="EcoHack is an annual sustainability hackathon for students and early-career builders. Explore the community, sustainability themes, and updates for the next edition.">
+    <meta name="theme-color" content="#123e32">
+    <link rel="canonical" href="https://ecohackathon.com/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="EcoHack — Debug the planet.">
+    <meta property="og:description" content="An annual sustainability hackathon. Bring your curiosity. Build something that matters.">
+    <meta property="og:url" content="https://ecohackathon.com/">
+    <meta property="og:image" content="https://ecohackathon.com/images/og.jpg">
+    <meta property="og:image:alt" content="EcoHack — Debug the planet. Annual sustainability hackathon.">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/script.js" defer>
+    </script>
+  </head>
+  <body>
+    <div class="reading-progress" aria-hidden="true"><span></span></div>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="header" id="top">
+      <nav class="container navbar" aria-label="Primary navigation">
+        <a class="brand" href="#top" aria-label="EcoHack home">
+          <img src="images/logo.png" width="47" height="29" alt="">
+          <span>EcoHack<span class="brand-period">.</span>
+        </span>
       </a>
-
-      <button class="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">
-        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="navMenu">Menu <span aria-hidden="true">☰</span>
       </button>
-
-      <ul class="nav-menu" id="navMenu">
-        <li><a href="#about" class="nav-link">About</a></li>
-        <li><a href="#themes" class="nav-link">Themes</a></li>
-        <li><a href="#weekend" class="nav-link">Weekend</a></li>
-        <li><a href="#editions" class="nav-link">Editions</a></li>
-        <li><a href="#gallery" class="nav-link">Gallery</a></li>
-        <li><a href="#sponsors" class="nav-link">Sponsors</a></li>
-        <li><a href="#faq" class="nav-link">FAQ</a></li>
-      </ul>
-
-      <a href="https://forms.gle/GDMTArye8ce1FmNr8"
-         target="_blank" rel="noopener noreferrer"
-         class="cta-button nav-cta">
-        Get notified →
-      </a>
+      <div class="nav-menu" id="navMenu">
+        <a href="#about">The idea</a>
+        <a href="#themes">Themes</a>
+        <a href="#weekend">The experience</a>
+        <a href="#gallery">Community</a>
+        <a href="#faq">FAQ</a>
+        <a class="button button-small" href="register.html">Register interest <span aria-hidden="true">↗</span>
+        </a>
+      </div>
     </nav>
   </header>
-
   <main id="main">
-    <!-- HERO -->
-    <section class="hero" aria-label="Hero">
-      <div class="space" aria-hidden="true">
-        <div class="stars" data-stars></div>
-
-        <!-- Planets & rings (parallax-safe) -->
-        <div class="planet planet-left" data-parallax="0.35"></div>
-        <div class="planet planet-right" data-parallax="0.25"></div>
-        <div class="planet planet-bottom" data-parallax="0.18"></div>
-
-        <div class="ring ring-1" data-parallax="0.12"></div>
-        <div class="ring ring-2" data-parallax="0.16"></div>
-
-        <!-- Rockets (NO parallax to avoid breaking keyframe transforms) -->
-        <div class="rocket rocket-a" aria-hidden="true">
-          <svg viewBox="0 0 64 64" role="img" aria-label="Rocket">
-            <defs>
-              <linearGradient id="rg" x1="0" x2="1">
-                <stop offset="0" stop-color="#2ECC71"/>
-                <stop offset="1" stop-color="#1ABC9C"/>
-              </linearGradient>
-            </defs>
-            <path d="M32 6c10 6 16 16 16 28 0 3-1 7-2 10l-6 10H24l-6-10c-1-3-2-7-2-10 0-12 6-22 16-28z" fill="url(#rg)" opacity="0.95"/>
-            <circle cx="32" cy="28" r="6" fill="#0B1F1A" opacity="0.75"/>
-            <circle cx="32" cy="28" r="3.5" fill="#EAFAF1" opacity="0.9"/>
-            <path d="M24 44l-6 4 2-10 4 6z" fill="#2ECC71" opacity="0.9"/>
-            <path d="M40 44l6 4-2-10-4 6z" fill="#2ECC71" opacity="0.9"/>
-            <path class="flame" d="M32 58c4-3 6-7 6-10H26c0 3 2 7 6 10z" fill="#F4D03F" opacity="0.95"/>
-            <path class="flame2" d="M32 60c2-2 3-5 3-7h-6c0 2 1 5 3 7z" fill="#EC7063" opacity="0.9"/>
-          </svg>
-          <span class="trail"></span>
-        </div>
-
-        <div class="rocket rocket-b" aria-hidden="true">
-          <svg viewBox="0 0 64 64" aria-label="Rocket">
-            <defs>
-              <linearGradient id="rg2" x1="0" x2="1">
-                <stop offset="0" stop-color="#5DADE2"/>
-                <stop offset="1" stop-color="#2ECC71"/>
-              </linearGradient>
-            </defs>
-            <path d="M32 6c10 6 16 16 16 28 0 3-1 7-2 10l-6 10H24l-6-10c-1-3-2-7-2-10 0-12 6-22 16-28z" fill="url(#rg2)" opacity="0.95"/>
-            <circle cx="32" cy="28" r="6" fill="#0B1F1A" opacity="0.75"/>
-            <circle cx="32" cy="28" r="3.5" fill="#EAFAF1" opacity="0.9"/>
-            <path class="flame" d="M32 58c4-3 6-7 6-10H26c0 3 2 7 6 10z" fill="#F4D03F" opacity="0.95"/>
-          </svg>
-          <span class="trail"></span>
-        </div>
-
-        <div class="rocket rocket-c" aria-hidden="true">
-          <svg viewBox="0 0 64 64" aria-label="Rocket">
-            <defs>
-              <linearGradient id="rg3" x1="0" x2="1">
-                <stop offset="0" stop-color="#AF7AC5"/>
-                <stop offset="1" stop-color="#2ECC71"/>
-              </linearGradient>
-            </defs>
-            <path d="M32 6c10 6 16 16 16 28 0 3-1 7-2 10l-6 10H24l-6-10c-1-3-2-7-2-10 0-12 6-22 16-28z" fill="url(#rg3)" opacity="0.95"/>
-            <circle cx="32" cy="28" r="6" fill="#0B1F1A" opacity="0.75"/>
-            <circle cx="32" cy="28" r="3.5" fill="#EAFAF1" opacity="0.9"/>
-            <path class="flame" d="M32 58c4-3 6-7 6-10H26c0 3 2 7 6 10z" fill="#F4D03F" opacity="0.95"/>
-          </svg>
-          <span class="trail"></span>
-        </div>
-
-        <!-- Shooting stars -->
-        <span class="shoot shoot-1"></span>
-        <span class="shoot shoot-2"></span>
-        <span class="shoot shoot-3"></span>
-
-        <div class="space-vignette"></div>
-      </div>
-
-      <div class="container hero-content">
-        <div class="hero-card reveal">
-          <div class="pill">
-            <span class="dot"></span>
-            Annual sustainability hackathon
-          </div>
-
-          <h1>EcoHack</h1>
-
-          <p class="hero-lead">
-            We bring builders together every year to <strong>debug the planet</strong>—shipping real prototypes across
-            climate, water, circular economy, and smarter cities.
-          </p>
-
-          <div class="hero-actions">
-            <a href="https://forms.gle/GDMTArye8ce1FmNr8"
-               target="_blank" rel="noopener noreferrer"
-               class="cta-button">
-              Get notified about the next edition →
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">
+            <span class="status-dot" aria-hidden="true">
+            </span> THE ANNUAL SUSTAINABILITY HACKATHON</p>
+            <h1 id="hero-title">Built together.<br><span>For a better planet.</span></h1>
+          <p class="hero-lead">A gathering of curious minds turning sustainability challenges into working prototypes. Bring your skills. Find your people. Build something that matters.</p>
+          <div class="actions">
+            <a class="button" href="register.html">Be part of what’s next <span aria-hidden="true">↗</span>
             </a>
-            <a href="#editions" class="cta-button secondary">Explore past editions</a>
+            <a class="text-link" href="#about">Discover EcoHack <span aria-hidden="true">↓</span>
+            </a>
           </div>
-
-          <div class="stats-row" role="list" aria-label="EcoHack highlights">
-            <div class="stat" role="listitem">
-              <div class="stat-number">150+</div><div class="stat-label">Builders</div>
-            </div>
-            <div class="stat" role="listitem">
-              <div class="stat-number">36</div><div class="stat-label">Hours</div>
-            </div>
-            <div class="stat" role="listitem">
-              <div class="stat-number">Mentors</div><div class="stat-label">& Workshops</div>
-            </div>
-            <div class="stat" role="listitem">
-              <div class="stat-number">2024–2025</div><div class="stat-label">Past editions</div>
-            </div>
+          <p class="hero-note">Next edition: dates and details to be announced.</p>
+          <div class="hero-bottom">
+            <span class="mini-mark" aria-hidden="true">&lt;/&gt;</span>
+            <p>Technology meets sustainability.<br>
+              <strong>People make the difference.</strong>
+            </p>
           </div>
         </div>
-
-        <div class="hero-mini-grid">
-          <div class="mini-card reveal">
-            <h3>Impact-first</h3>
-            <p>We care about usefulness. Ship prototypes that matter.</p>
+        <figure class="hero-photo">
+          <img src="images/audience.webp" width="2400" height="1600" alt="A large group of EcoHack participants gathered in the auditorium" fetchpriority="high" srcset="images/audience-800.webp 800w, images/audience-1200.webp 1200w, images/audience.webp 2400w" sizes="100vw">
+          <div class="photo-index" aria-hidden="true">ECOHACK / PEOPLE. PURPOSE. POSSIBILITY.</div>
+          <figcaption>
+            <span>Different minds.<br>
+              <strong>Shared purpose.</strong>
+            </span>
+            <a href="#gallery" aria-label="Explore the EcoHack gallery">↗</a>
+          </figcaption>
+          <div class="hero-photo-controls" aria-label="Featured community photos"><button type="button" class="hero-prev" aria-label="Previous featured photo">←</button><span class="hero-photo-count" aria-live="polite">01 / 03</span><button type="button" class="hero-next" aria-label="Next featured photo">→</button></div>
+          <div class="photo-stamp" aria-hidden="true">IDEAS INTO<br>
+            <strong>IMPACT ↗</strong>
           </div>
-          <div class="mini-card reveal">
-            <h3>Mentor support</h3>
-            <p>Office hours + workshops to keep momentum high.</p>
-          </div>
-          <div class="mini-card reveal">
-            <h3>Real community</h3>
-            <p>Meet builders who care about sustainability as much as you do.</p>
-          </div>
+        </figure>
+      </div>
+      <div class="mission-ribbon">
+        <div class="container">
+          <span>THINK BIG.</span>
+          <span aria-hidden="true">✳</span>
+          <span>BUILD TOGETHER.</span>
+          <span aria-hidden="true">✳</span>
+          <span>DEBUG THE PLANET.</span>
+          <span aria-hidden="true">✳</span>
         </div>
       </div>
     </section>
-
-    <!-- ABOUT -->
-    <section id="about" class="section">
-      <div class="container two-col">
-        <div class="panel reveal">
-          <h2>Why EcoHack exists</h2>
-          <p>
-            Sustainability challenges are real—and they need builders. EcoHack is designed as an annual sprint where teams
-            ideate, build, and demo in a high-energy weekend.
-          </p>
-          <p>
-            Whether you’re a beginner or experienced, you’ll find a supportive environment to learn fast and ship.
-          </p>
-          <div class="chips">
-            <span class="chip">Mentorship</span>
-            <span class="chip">Workshops</span>
-            <span class="chip">Demos</span>
-            <span class="chip">Community</span>
-          </div>
-        </div>
-
-        <div class="panel media reveal">
-          <img src="images/event-photo-1.jpg" alt="Participants collaborating at EcoHack" loading="lazy" />
-          <div class="caption">
-            <span class="tag official">EcoHack</span>
-            <span>Builders collaborating and shipping prototypes</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="container feature-grid">
-        <div class="feature-card reveal">
-          <h3>Build with speed</h3>
-          <p>Structured weekend flow + mentor check-ins keep teams moving.</p>
-        </div>
-        <div class="feature-card reveal">
-          <h3>Learn by doing</h3>
-          <p>Workshops and hands-on support—no fluff.</p>
-        </div>
-        <div class="feature-card reveal">
-          <h3>Celebrate outcomes</h3>
-          <p>We highlight strong demos, smart execution, and real-world impact.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- THEMES -->
-    <section id="themes" class="section section-tinted">
+    <section class="section about" id="about" aria-labelledby="about-title">
       <div class="container">
-        <h2 class="section-title reveal">Themes we explore</h2>
-        <p class="section-subtitle reveal">
-          Themes evolve every year, but the mission stays the same: sustainability-first technology.
-        </p>
-
-        <div class="tracks-grid">
-          <div class="track-card reveal"><h3>Smart Waste</h3><p>Track, reduce, and optimize collection and sorting.</p></div>
-          <div class="track-card reveal"><h3>Green Cities</h3><p>Data-driven cities with sustainable infrastructure.</p></div>
-          <div class="track-card reveal"><h3>Renewable Energy</h3><p>Solar, wind, storage, and energy intelligence.</p></div>
-          <div class="track-card reveal"><h3>AgriTech</h3><p>IoT + AI for resilient food systems.</p></div>
-          <div class="track-card reveal"><h3>Water</h3><p>Monitoring, purification, and smarter usage.</p></div>
-          <div class="track-card reveal"><h3>Circular Economy</h3><p>Reuse, recycle, and design for sustainability.</p></div>
-          <div class="track-card reveal"><h3>Climate Education</h3><p>Tools that turn awareness into action.</p></div>
-          <div class="track-card reveal"><h3>Resilience</h3><p>Risk prediction, mitigation, and adaptation.</p></div>
+        <div class="section-heading">
+          <p class="eyebrow">01 / THE IDEA</p>
+          <p class="section-aside">A shared challenge.<br>A collective response.</p>
         </div>
-
-        <div class="callout reveal">
-          <div>
-            <h3>Want updates for the next EcoHack?</h3>
-            <p>We announce dates and details closer to the event—get notified.</p>
-          </div>
-          <a href="https://forms.gle/GDMTArye8ce1FmNr8" target="_blank" rel="noopener noreferrer" class="cta-button">
-            Notify me →
+        <div class="about-grid">
+          <h2 id="about-title">The future needs<br>
+          <em>more builders.</em>
+        </h2>
+        <div class="about-copy">
+          <p class="large-copy">Sustainability is a challenge we can work on. Together.</p>
+          <p>EcoHack brings university students and early-career builders together for an annual sprint of ideas, learning, and hands-on development. Teams explore environmental challenges and turn their ideas into prototypes they can demonstrate.</p>
+          <p>From your first hackathon to your next ambitious project, there’s room for your perspective here.</p>
+          <a class="text-link" href="#weekend">See how the weekend unfolds <span aria-hidden="true">↗</span>
           </a>
         </div>
       </div>
-    </section>
-
-    <!-- WEEKEND -->
-    <section id="weekend" class="agenda-section" aria-label="Typical weekend flow">
-      <h2 class="agenda-title reveal">Typical EcoHack Weekend</h2>
-      <div class="agenda-wrapper container">
-        <div class="agenda-card reveal">
-          <h3>Day 1 — Kickoff</h3>
-          <div class="agenda-item"><span class="agenda-time">Morning</span><p>Check-in & Opening <span class="tag official">Official</span></p></div>
-          <div class="agenda-item"><span class="agenda-time">Midday</span><p>Team formation & Ideation <span class="tag engagement">Engagement</span></p></div>
-          <div class="agenda-item"><span class="agenda-time">Afternoon</span><p>Workshops & Building <span class="tag hacking">Hacking</span></p></div>
-          <div class="agenda-item"><span class="agenda-time">Evening</span><p>Mentor check-ins <span class="tag talk">Talk</span></p></div>
-        </div>
-
-        <div class="agenda-card reveal">
-          <h3>Day 2 — Demo Day</h3>
-          <div class="agenda-item"><span class="agenda-time">Morning</span><p>Final build sprint <span class="tag hacking">Hacking</span></p></div>
-          <div class="agenda-item"><span class="agenda-time">Midday</span><p>Pitch prep <span class="tag engagement">Engagement</span></p></div>
-          <div class="agenda-item"><span class="agenda-time">Afternoon</span><p>Demos & Judging <span class="tag judging">Judging</span></p></div>
-          <div class="agenda-item"><span class="agenda-time">Evening</span><p>Awards & Closing <span class="tag official">Official</span></p></div>
-        </div>
+      <div class="principles">
+        <article>
+          <span class="principle-symbol" aria-hidden="true">↗</span>
+          <h3>Make it useful.</h3>
+          <p>Start with a real sustainability problem. Build toward a practical response.</p>
+        </article>
+        <article>
+          <span class="principle-symbol" aria-hidden="true">⌘</span>
+          <h3>Learn in the making.</h3>
+          <p>Explore new tools with workshops, mentor support, and hands-on experimentation.</p>
+        </article>
+        <article>
+          <span class="principle-symbol" aria-hidden="true">✳</span>
+          <h3>Go further together.</h3>
+          <p>Connect different skills and perspectives. Create something you couldn’t build alone.</p>
+        </article>
       </div>
-    </section>
-
-    <!-- EDITIONS -->
-    <section id="editions" class="section">
-      <div class="container">
-        <h2 class="section-title reveal">Editions</h2>
-        <p class="section-subtitle reveal">EcoHack is annual. Explore past editions and stay in the loop for the next one.</p>
-
-        <div class="editions-grid">
-          <article class="edition-card reveal">
-            <div class="edition-top"><span class="edition-year">2024</span><span class="edition-pill">Past</span></div>
-            <h3>EcoHack 2024</h3>
-            <p>Foundations, strong community momentum, and sustainability-first ideas.</p>
-            <a class="text-link" href="#" aria-disabled="true">Recap →</a>
-          </article>
-
-          <article class="edition-card reveal">
-            <div class="edition-top"><span class="edition-year">2025</span><span class="edition-pill">Past</span></div>
-            <h3>EcoHack 2025</h3>
-            <p>Teams shipped prototypes across water, cities, education, and energy.</p>
-            <a class="text-link" href="#" aria-disabled="true">Recap →</a>
-          </article>
-
-          <article class="edition-card featured reveal">
-            <div class="edition-top"><span class="edition-year">Next</span><span class="edition-pill live">Upcoming</span></div>
-            <h3>The next EcoHack</h3>
-            <p>Dates and details will be announced soon. Get notified first.</p>
-            <a class="cta-button" href="https://forms.gle/GDMTArye8ce1FmNr8" target="_blank" rel="noopener noreferrer">
-              Get notified →
-            </a>
-          </article>
-        </div>
+    </div>
+  </section>
+  <section class="section themes" id="themes" aria-labelledby="themes-title">
+    <div class="container">
+      <div class="section-heading">
+        <p class="eyebrow">02 / CHALLENGES WORTH SOLVING</p>
+        <span class="section-aside">ONE PLANET. MANY POSSIBILITIES.</span>
       </div>
-    </section>
-
-    <!-- GALLERY -->
-    <section id="gallery" class="section section-tinted">
-      <div class="container">
-        <h2 class="section-title reveal">Gallery</h2>
-        <p class="section-subtitle reveal">Replace images with yours using the same filenames.</p>
-
-        <div class="gallery-grid" data-gallery>
-          <button class="gallery-item reveal" type="button" data-full="images/gallery-1.jpg" aria-label="Open image 1"><img src="images/gallery-1.jpg" alt="EcoHack moment 1" loading="lazy"></button>
-          <button class="gallery-item reveal" type="button" data-full="images/gallery-2.jpg" aria-label="Open image 2"><img src="images/gallery-2.jpg" alt="EcoHack moment 2" loading="lazy"></button>
-          <button class="gallery-item reveal" type="button" data-full="images/gallery-3.jpg" aria-label="Open image 3"><img src="images/gallery-3.jpg" alt="EcoHack moment 3" loading="lazy"></button>
-          <button class="gallery-item reveal" type="button" data-full="images/gallery-4.jpg" aria-label="Open image 4"><img src="images/gallery-4.jpg" alt="EcoHack moment 4" loading="lazy"></button>
-          <button class="gallery-item reveal" type="button" data-full="images/gallery-5.jpg" aria-label="Open image 5"><img src="images/gallery-5.jpg" alt="EcoHack moment 5" loading="lazy"></button>
-          <button class="gallery-item reveal" type="button" data-full="images/gallery-6.jpg" aria-label="Open image 6"><img src="images/gallery-6.jpg" alt="EcoHack moment 6" loading="lazy"></button>
-        </div>
+      <div class="section-intro">
+        <h2 id="themes-title">Where your ideas<br>can make a difference.</h2>
+        <p>Explore the sustainability themes that shape EcoHack. Themes evolve each year; the next edition’s challenges will be announced with its details.</p>
       </div>
-    </section>
-
-    <!-- SPONSORS -->
-    <section id="sponsors" class="section">
-      <div class="container">
-        <h2 class="section-title reveal">Sponsors</h2>
-        <p class="section-subtitle reveal">Partner with EcoHack to support sustainability builders.</p>
-
-        <div class="sponsors-grid reveal">
-          <img src="images/sponsor-logo-1.jpg" alt="Sponsor logo" loading="lazy">
-          <img src="images/sponsor-logo-2.png" alt="Sponsor logo" loading="lazy">
-          <img src="images/gdg-logo-eui-white.png" alt="Sponsor logo" loading="lazy">
-        </div>
+      <div class="theme-grid">
+        <article class="theme">
+          <span class="theme-no">01</span>
+          <span class="theme-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h8l4 7-4 7H8l-4-7 4-7Z"/><path d="m8 3 2 5M20 10h-6M8 17l3-5"/></svg></span>
+          <h3>Smart waste</h3>
+          <p>Better collection, smarter sorting, and less waste.</p>
+        </article>
+        <article class="theme">
+          <span class="theme-no">02</span>
+          <span class="theme-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V9h6v12M11 21V3h8v18M7 12h2m-2 4h2m5-9h2m-2 4h2m-2 4h2"/></svg></span>
+          <h3>Green cities</h3>
+          <p>Data and technology for more sustainable urban life.</p>
+        </article>
+        <article class="theme">
+          <span class="theme-no">03</span>
+          <span class="theme-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 1v3m0 16v3M1 12h3m16 0h3M4 4l2 2m12 12 2 2M4 20l2-2M18 6l2-2"/></svg></span>
+          <h3>Renewable energy</h3>
+          <p>New thinking for generation, storage, and energy use.</p>
+        </article>
+        <article class="theme">
+          <span class="theme-no">04</span>
+          <span class="theme-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V12C3 13 2 6 2 3c7 0 10 3 10 9 0-7 5-10 10-10 0 7-3 11-10 11"/></svg></span>
+          <h3>AgriTech</h3>
+          <p>IoT and AI for more resilient food systems.</p>
+        </article>
+        <article class="theme">
+          <span class="theme-no">05</span>
+          <span class="theme-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C10 7 5 11 5 15a7 7 0 0 0 14 0c0-4-5-8-7-13Z"/><path d="M9 16a3 3 0 0 0 3 3"/></svg></span>
+          <h3>Water</h3>
+          <p>Monitoring, purification, and responsible consumption.</p>
+        </article>
+        <article class="theme">
+          <span class="theme-no">06</span>
+          <span class="theme-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8c5-9 13 17 18 8 5-9-3-17-9-4S-2 17 3 8Z"/></svg></span>
+          <h3>Circular economy</h3>
+          <p>Keep resources in use. Rethink what comes next.</p>
+        </article>
+        <article class="theme">
+          <span class="theme-no">07</span>
+          <span class="theme-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v16M12 5C8 2 4 2 2 3v16c4-1 7 0 10 2 3-2 6-3 10-2V3c-3-1-7-1-10 2Z"/></svg></span>
+          <h3>Climate education</h3>
+          <p>Turn environmental understanding into everyday action.</p>
+        </article>
+        <article class="theme">
+          <span class="theme-no">08</span>
+          <span class="theme-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 8 4v6c0 5-8 10-8 10S4 17 4 12V6l8-4Z"/><path d="m8 12 3 3 5-6"/></svg></span>
+          <h3>Resilience</h3>
+          <p>Anticipate risks and adapt to a changing environment.</p>
+        </article>
       </div>
-    </section>
-
-    <!-- FAQ -->
-    <section id="faq" class="section section-tinted-soft">
-      <div class="container">
-        <h2 class="section-title reveal">FAQ</h2>
-        <p class="section-subtitle reveal">Quick answers. If you still have questions, message us.</p>
-
-        <div class="faq-container">
-          <div class="faq-item reveal">
-            <button class="faq-question" type="button">Who can participate?</button>
-            <div class="faq-answer"><p>EcoHack is open to university students and early-career builders who care about sustainability.</p></div>
+    </div>
+  </section>
+  <section class="section experience" id="weekend" aria-labelledby="weekend-title">
+    <div class="container experience-grid">
+      <div class="experience-visual">
+        <p class="eyebrow">03 / THE EXPERIENCE</p>
+        <h2 id="weekend-title">A weekend to<br>
+        <em>move ideas forward.</em>
+      </h2>
+      <figure>
+        <img src="images/mentor-session.webp" width="1148" height="869" alt="An EcoHack mentor speaking with participants during a group session" loading="lazy" srcset="images/mentor-session-800.webp 800w, images/mentor-session-1200.webp 1200w, images/mentor-session.webp 1800w" sizes="(max-width: 767px) 100vw, 45vw">
+        <figcaption>Learn. Experiment. Share what you build.</figcaption>
+      </figure>
+    </div>
+    <div class="journey">
+      <p class="journey-note">A typical EcoHack journey. The final schedule is announced for each edition.</p>
+      <ol>
+        <li>
+          <span class="step-no">01</span>
+          <div>
+            <span class="step-label">MEET & EXPLORE</span>
+            <h3>Find your people. Pick a problem.</h3>
+            <p>Check in, meet fellow builders, form a team, and explore sustainability challenges.</p>
           </div>
-
-          <div class="faq-item reveal">
-            <button class="faq-question" type="button">Do I need a team?</button>
-            <div class="faq-answer"><p>You can apply solo—team formation happens at the start.</p></div>
+        </li>
+        <li>
+          <span class="step-no">02</span>
+          <div>
+            <span class="step-label">LEARN & BUILD</span>
+            <h3>Get your idea off the page.</h3>
+            <p>Develop your prototype with workshops, mentor check-ins, and time to experiment.</p>
           </div>
-
-          <div class="faq-item reveal">
-            <button class="faq-question" type="button">Is it free?</button>
-            <div class="faq-answer"><p>EcoHack is designed to be accessible. Sponsors make it possible.</p></div>
+        </li>
+        <li>
+          <span class="step-no">03</span>
+          <div>
+            <span class="step-label">REFINE & PRESENT</span>
+            <h3>Make it work. Make it clear.</h3>
+            <p>Use the final build sprint to test your solution and prepare your pitch.</p>
           </div>
-
-          <div class="faq-item reveal">
-            <button class="faq-question" type="button">How do I stay updated?</button>
-            <div class="faq-answer"><p>Use the “Get notified” button and you’ll receive next edition announcements.</p></div>
+        </li>
+        <li>
+          <span class="step-no">04</span>
+          <div>
+            <span class="step-label">DEMO & CELEBRATE</span>
+            <h3>Show the possibilities.</h3>
+            <p>Present your work for judging, exchange ideas, and celebrate the community’s effort.</p>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA STRIP -->
-    <section class="cta-strip" aria-label="Call to action">
-      <div class="container cta-strip-inner reveal">
-        <div>
-          <h3>Join the EcoHack community.</h3>
-          <p>Get notified when the next edition is announced.</p>
-        </div>
-        <a href="https://forms.gle/GDMTArye8ce1FmNr8"
-           target="_blank" rel="noopener noreferrer"
-           class="cta-button">
-          Get notified →
+        </li>
+      </ol>
+      <a class="text-link" href="#faq">First hackathon? Start here <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+<section class="section editions" id="editions" aria-labelledby="editions-title">
+  <div class="container">
+    <div class="section-heading">
+      <p class="eyebrow">04 / A GROWING STORY</p>
+      <a class="text-link" href="#gallery">See the community <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+    <h2 id="editions-title">Every edition.<br>A new starting point.</h2>
+    <div class="edition-grid">
+      <article>
+        <span class="edition-status">PAST EDITION</span>
+        <h3>2024</h3>
+        <p>The foundations: a community coming together around sustainability and technology.</p>
+      </article>
+      <article>
+        <span class="edition-status">PAST EDITION</span>
+        <h3>2025</h3>
+        <p>More ideas taking shape across water, cities, climate education, and energy.</p>
+      </article>
+      <article class="next-edition">
+        <span class="edition-status">THE NEXT CHAPTER</span>
+        <h3>You’re next.</h3>
+        <p>Dates and details are still to come. Stay connected for the next edition’s announcements.</p>
+        <a class="text-link" href="register.html">Register your interest <span aria-hidden="true">↗</span>
+        </a>
+      </article>
+    </div>
+  </div>
+</section>
+<section class="section gallery" id="gallery" aria-labelledby="gallery-title">
+  <div class="container">
+    <div class="section-heading">
+      <p class="eyebrow">05 / THE PEOPLE BEHIND THE IDEAS</p>
+      <span class="section-aside">FROM THE ECOHACK PHOTO ARCHIVE</span>
+    </div>
+    <div class="section-intro">
+      <h2 id="gallery-title">Built by people.<br>
+      <em>Powered by possibility.</em>
+    </h2>
+    <p>The conversations, the shared effort, and the moments between the demos. This is EcoHack, through our community’s lens.</p>
+  </div>
+  <div class="gallery-tools"><p>Real moments. A shared journey.</p><div class="gallery-filters" role="group" aria-label="Filter community photographs"><button type="button" data-filter="all" aria-pressed="true">All moments</button><button type="button" data-filter="community" aria-pressed="false">Community</button><button type="button" data-filter="experience" aria-pressed="false">In the room</button></div><p class="filter-count" aria-live="polite">6 moments</p></div>
+  <div class="gallery-grid">
+<a class="gallery-item" data-category="community" data-full="images/community-portrait.webp" href="images/community-portrait.webp"><img src="images/community-portrait.webp" width="2400" height="1600" alt="A large EcoHack group seated together in the auditorium" loading="lazy" srcset="images/community-portrait-800.webp 800w, images/community-portrait-1200.webp 1200w, images/community-portrait.webp 2400w" sizes="(max-width: 767px) 100vw, 80vw"><span>01 / The people behind the possibilities <span aria-hidden="true">↗</span></span></a>
+<a class="gallery-item" data-category="community" data-full="images/eco-community.webp" href="images/eco-community.webp"><img src="images/eco-community.webp" width="2400" height="1600" alt="EcoHack participants gathered for a group photo in front of the event backdrop" loading="lazy" srcset="images/eco-community-800.webp 800w, images/eco-community-1200.webp 1200w, images/eco-community.webp 2400w" sizes="(max-width: 767px) 100vw, 45vw"><span>02 / A shared purpose <span aria-hidden="true">↗</span></span></a>
+<a class="gallery-item" data-category="experience" data-full="images/team-session.webp" href="images/team-session.webp"><img src="images/team-session.webp" width="2400" height="1600" alt="EcoHack teams working together around tables with laptops" loading="lazy" srcset="images/team-session-800.webp 800w, images/team-session-1200.webp 1200w, images/team-session.webp 1800w" sizes="(max-width: 767px) 100vw, 45vw"><span>03 / Ideas in the making <span aria-hidden="true">↗</span></span></a>
+<a class="gallery-item" data-category="community" data-full="images/awards.webp" href="images/awards.webp"><img src="images/awards.webp" width="2400" height="1600" alt="EcoHack community members on stage holding an award board" loading="lazy" srcset="images/awards-800.webp 800w, images/awards-1200.webp 1200w, images/awards.webp 2000w" sizes="(max-width: 767px) 100vw, 45vw"><span>04 / Celebrating the work <span aria-hidden="true">↗</span></span></a>
+<a class="gallery-item" data-category="experience" data-full="images/keynote.webp" href="images/keynote.webp"><img src="images/keynote.webp" width="2400" height="1600" alt="An EcoHack speaker presenting to a large audience in the auditorium" loading="lazy" srcset="images/keynote-800.webp 800w, images/keynote-1200.webp 1200w, images/keynote.webp 2000w" sizes="(max-width: 767px) 100vw, 45vw"><span>05 / Learning, together <span aria-hidden="true">↗</span></span></a>
+<a class="gallery-item" data-category="community" data-full="images/audience.webp" href="images/audience.webp"><img src="images/audience.webp" width="2400" height="1600" alt="EcoHack participants seated together during the event" loading="lazy" srcset="images/audience-800.webp 800w, images/audience-1200.webp 1200w, images/audience.webp 2400w" sizes="100vw"><span>06 / Different minds. One community. <span aria-hidden="true">↗</span></span></a>
+</div>
+</div>
+</section>
+<section class="section partners" id="sponsors" aria-labelledby="partners-title">
+  <div class="container">
+    <div class="section-heading">
+      <p class="eyebrow">06 / SUPPORTING THE MISSION</p>
+    </div>
+    <div class="partner-layout">
+      <div>
+        <h2 id="partners-title">Better, together.</h2>
+        <p>EcoHack’s existing community and supporter network brings sustainability and technology into the same room.</p>
+        <a class="text-link" href="mailto:info@ecohackathon.com?subject=EcoHack%20partnership%20enquiry">Explore a partnership <span aria-hidden="true">↗</span>
         </a>
       </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="container footer-container">
-      <h3>EcoHack</h3>
-      <p>Annual Sustainability Hackathon</p>
-      <p>Contact: <a href="mailto:info@ecohackathon.com">info@ecohackathon.com</a></p>
-
-      <div class="social-links">
-        <a href="https://www.instagram.com/ecohackathon" target="_blank" rel="noopener noreferrer">Instagram</a>
-        <a href="https://www.linkedin.com/company/ecohack/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        <a href="https://www.facebook.com/share/1DwdWNRnn2" target="_blank" rel="noopener noreferrer">Facebook</a>
-      </div>
-
-      <p class="muted">&copy; <span id="yearNow"></span> EcoHack. All rights reserved.</p>
-    </div>
-  </footer>
-
-  <!-- Gallery Modal -->
-  <div class="modal" id="galleryModal" aria-hidden="true" role="dialog" aria-label="Image viewer">
-    <div class="modal-backdrop" data-close></div>
-    <div class="modal-content" role="document">
-      <button class="modal-close" type="button" aria-label="Close" data-close>×</button>
-      <img id="modalImg" alt="Gallery image" />
-      <div class="modal-actions">
-        <button class="modal-btn" type="button" id="prevImg" aria-label="Previous image">←</button>
-        <button class="modal-btn" type="button" id="nextImg" aria-label="Next image">→</button>
+      <div class="partner-logos">
+        <figure>
+          <img src="images/acts.webp" width="220" height="220" alt="ACTS — Act Sustainable" loading="lazy">
+        </figure>
+        <figure>
+          <img src="images/eui.webp" width="220" height="220" alt="Egypt University of Informatics" loading="lazy">
+        </figure>
+        <figure>
+          <img src="images/gdg.webp" width="220" height="220" alt="Google Developer Group, Egypt University of Informatics" loading="lazy">
+        </figure>
       </div>
     </div>
   </div>
+</section>
+<section class="section faq" id="faq" aria-labelledby="faq-title">
+  <div class="container faq-grid">
+    <div>
+      <p class="eyebrow">07 / GOOD QUESTIONS</p>
+      <h2 id="faq-title">Curious?<br>
+      <em>You’re in good company.</em>
+    </h2>
+    <p>Have a question about the next edition?</p>
+    <a class="text-link" href="mailto:info@ecohackathon.com">Talk to the team <span aria-hidden="true">↗</span>
+    </a>
+  </div>
+  <div class="faq-list">
+    <details>
+      <summary>Who is EcoHack for?</summary>
+      <p>EcoHack welcomes university students and early-career builders interested in sustainability. Beginners and experienced participants can learn and build together. Check the next edition’s announcement for its eligibility details.</p>
+    </details>
+    <details>
+      <summary>Can I come without a team?</summary>
+      <p>The existing EcoHack format includes team formation at the start, so you can meet other builders. Follow the next edition’s application details for team requirements.</p>
+    </details>
+    <details>
+      <summary>What will I work on?</summary>
+      <p>EcoHack explores themes including waste, cities, renewable energy, agriculture, water, circular economy, climate education, and resilience. Specific challenges are announced for each edition.</p>
+    </details>
+    <details>
+      <summary>When and where is the next edition?</summary>
+      <p>The next edition’s dates, venue, and application timeline have not been announced on this site. Register your interest on this website to share your details with the organizing team.</p>
+    </details>
+    <details>
+      <summary>Is there a participation fee?</summary>
+      <p>A fee policy for the next edition has not been confirmed here. Please check its announcement or contact the team before making plans.</p>
+    </details>
+    <details>
+      <summary>How do I get updates or get involved?</summary>
+      <p>
+        <a href="register.html">Register your interest on our website</a> to share your details with the organizing team. Prospective mentors, judges, sponsors, and collaborators can <a href="mailto:info@ecohackathon.com">contact the team</a>.</p>
+      </details>
+    </div>
+  </div>
+</section>
+<section class="closing" aria-labelledby="closing-title">
+  <div class="container">
+    <p class="eyebrow">THE NEXT CHAPTER STARTS WITH PEOPLE LIKE YOU.</p>
+    <div class="closing-row">
+      <h2 id="closing-title">Let’s debug<br>
+      <em>the planet.</em>
+    </h2>
+    <div>
+      <p>Your next idea could start here.<br>Stay connected for the next EcoHack.</p>
+      <a class="button button-lime" href="register.html">Register your interest <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </div>
+</div>
+</section>
+</main>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <a class="brand" href="#top">
+          <img src="images/logo.png" width="47" height="29" alt="">
+          <span>EcoHack.</span>
+        </a>
+        <p>Technology. Sustainability. Collective possibility.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#about">About</a>
+        <a href="#editions">Editions</a>
+        <a href="#sponsors">Partners</a>
+        <a href="register.html">Register interest</a>
+        <a href="mailto:info@ecohackathon.com">info@ecohackathon.com</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span id="yearNow">2026</span> EcoHack. All rights reserved.</p>
+      <div>
+        <a href="https://www.instagram.com/ecohackathon" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+        <a href="https://www.linkedin.com/company/ecohack/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+        <a href="https://www.facebook.com/share/1DwdWNRnn2" target="_blank" rel="noopener noreferrer">Facebook ↗</a>
+      </div>
+      <a href="#top">Back to top ↑</a>
+    </div>
+  </div>
+</footer>
+<dialog class="lightbox" id="galleryModal" aria-labelledby="galleryCaption">
+  <div class="lightbox-toolbar">
+    <p id="galleryCaption">EcoHack gallery</p>
+    <button class="icon-button" id="closeGallery" type="button" aria-label="Close gallery">×</button>
+  </div>
+  <img id="modalImg" alt="">
+  <div class="lightbox-controls">
+    <button class="icon-button" id="prevImg" type="button" aria-label="Previous image">←</button>
+    <p id="galleryCount" aria-live="polite">
+    </p>
+    <button class="icon-button" id="nextImg" type="button" aria-label="Next image">→</button>
+  </div>
+</dialog>
 </body>
 </html>

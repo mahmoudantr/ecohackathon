@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Register your interest — EcoHack</title>
+  <meta name="description" content="Register your interest in EcoHack. Share your contact and university details with the organizing team.">
+  <meta name="theme-color" content="#103d31"><link rel="canonical" href="https://ecohackathon.com/register.html">
+  <meta property="og:title" content="Be part of what’s next — EcoHack"><meta property="og:description" content="Register your interest in the EcoHack community."><meta property="og:type" content="website"><meta property="og:image" content="https://ecohackathon.com/images/og.jpg">
+  <link rel="icon" href="images/logo.png" type="image/png"><link rel="stylesheet" href="css/styles.css"><link rel="stylesheet" href="css/registration.css"><script type="module" src="js/registration.js"></script>
+</head>
+<body class="registration-page">
+<a class="skip-link" href="#main">Skip to registration</a>
+<header class="header"><nav class="container navbar" aria-label="Registration navigation"><a class="brand" href="index.html"><img src="images/logo.png" width="47" height="29" alt=""><span>EcoHack.</span></a><a class="text-link" href="index.html">Back to the experience <span aria-hidden="true">↗</span></a></nav></header>
+<main id="main" class="container registration-layout">
+  <aside class="registration-story"><p class="eyebrow">THE NEXT CHAPTER / STARTS WITH YOU</p><h1>Your curiosity.<br><em>Our next chapter.</em></h1><p>Bring your perspective to EcoHack. Leave your details so the organizing team can keep you informed about participation.</p><figure><img src="images/eco-community-1200.webp" width="1200" height="800" alt="EcoHack community gathered for a group photograph"><figcaption>Different minds. Shared purpose.</figcaption></figure><p class="registration-disclaimer">This is an expression of interest. It does not confirm a place, an event date, or acceptance.</p></aside>
+  <section class="registration-card" aria-labelledby="form-title"><p class="eyebrow">LET’S GET TO KNOW YOU</p><h2 id="form-title">Register your interest.</h2><p class="form-intro">Six details. One new beginning.<br>All fields below are required.</p>
+    <div class="form-status" id="registrationStatus" role="status" aria-live="polite">Checking registration availability…</div>
+    <noscript><p class="form-status">JavaScript is needed to send this form. Please <a href="mailto:info@ecohackathon.com">contact the EcoHack team</a> if you need help.</p></noscript>
+    <form id="registrationForm" novalidate>
+      <div class="form-field"><label for="fullName">Full name</label><input id="fullName" name="fullName" autocomplete="name" required minlength="2" maxlength="120" dir="auto"><p class="field-error" id="fullNameError"></p></div>
+      <div class="form-field"><label for="email">Email address</label><input id="email" name="email" type="email" autocomplete="email" required maxlength="254" dir="ltr"><p class="field-error" id="emailError"></p></div>
+      <div class="form-field"><label for="phone">Phone number</label><input id="phone" name="phone" type="tel" autocomplete="tel" required maxlength="25" aria-describedby="phoneHint" dir="ltr"><p class="field-hint" id="phoneHint">Include your country code, for example +20.</p><p class="field-error" id="phoneError"></p></div>
+      <div class="form-field"><label for="university">University</label><input id="university" name="university" autocomplete="organization" required minlength="2" maxlength="160" dir="auto"><p class="field-error" id="universityError"></p></div>
+      <div class="field-pair"><div class="form-field"><label for="major">Major / field of study</label><input id="major" name="major" required minlength="2" maxlength="160" dir="auto"><p class="field-error" id="majorError"></p></div><div class="form-field"><label for="age">Age</label><input id="age" name="age" type="number" inputmode="numeric" min="1" max="120" step="1" required aria-describedby="ageHint"><p class="field-hint" id="ageHint">Age in years.</p><p class="field-error" id="ageError"></p></div></div>
+      <div class="bot-field" aria-hidden="true"><label for="website">Leave this empty</label><input id="website" name="website" tabindex="-1" autocomplete="off"></div>
+      <label class="consent-row"><input type="checkbox" id="consent" name="consent" required><span>I agree that the EcoHack organizing team may use these details to review my interest and contact me about participation.</span></label><p class="field-error" id="consentError"></p>
+      <p class="privacy-note">Your details are for the organizing team and are not shown publicly. Once enabled, this form uses Supabase for storage. A Cloudflare security check may appear when additional spam protection is enabled. For questions or a deletion request: <a href="mailto:info@ecohackathon.com">info@ecohackathon.com</a>.</p>
+      <div id="challenge" class="challenge"></div>
+      <button type="submit" id="submitRegistration" class="button" disabled>Submit my interest <span aria-hidden="true">↗</span></button><p class="form-footnote">A confirmation appears here only after your details have been saved.</p>
+    </form>
+    <section id="registrationSuccess" class="success-panel" hidden tabindex="-1" aria-labelledby="successTitle"><span class="success-mark" aria-hidden="true">✓</span><h3 id="successTitle">Your interest is registered.</h3><p>Your details have been saved for the EcoHack organizing team. This is not an acceptance or a confirmed place.</p><a class="text-link" href="index.html">Back to EcoHack <span aria-hidden="true">↗</span></a></section>
+  </section>
+</main><footer class="container registration-footer"><p>EcoHack · Technology. Sustainability. Collective possibility.</p><a href="mailto:info@ecohackathon.com">Need a hand? Contact the team ↗</a></footer>
+</body></html>
